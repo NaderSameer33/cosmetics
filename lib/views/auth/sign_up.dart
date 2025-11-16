@@ -1,7 +1,7 @@
 import '../../core/ui/app_image.dart';
 import 'widgets/custom_auth_logo.dart';
 import 'widgets/custom_auth_phone_fild.dart';
-import 'widgets/custom_auth_text_fild.dart';
+import '../../core/ui/app_input.dart';
 import '../../core/ui/app_button.dart';
 import 'package:flutter/material.dart';
 
@@ -27,14 +27,14 @@ class _SignUpViewState extends State<SignUpView> {
                 title: 'Create account',
               ),
               const SizedBox(height: 50),
-              const CustomAuthTextFild(
+              const AppInput(
                 hintText: 'Your Name ',
                 labelText: 'Your Name',
               ),
               const SizedBox(height: 33),
               const CustomPhoneAuthFild(),
               const SizedBox(height: 16),
-              CustomAuthTextFild(
+              AppInput(
                 obscureText: isSecure ? false : true,
                 suffixIcon: GestureDetector(
                   onTap: () {
@@ -49,7 +49,7 @@ class _SignUpViewState extends State<SignUpView> {
                 labelText: 'Your Password',
               ),
               const SizedBox(height: 16),
-              CustomAuthTextFild(
+              AppInput(
                 obscureText: isConformSecure ? false : true,
                 suffixIcon: GestureDetector(
                   onTap: () {

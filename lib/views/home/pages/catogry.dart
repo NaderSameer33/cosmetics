@@ -1,5 +1,5 @@
+import 'package:cosmentics/core/ui/app_input.dart';
 import '../widgets/catogry_list_view.dart';
-import '../widgets/custom_home_text_fild.dart';
 import 'package:flutter/material.dart';
 
 class CatogryPage extends StatelessWidget {
@@ -22,7 +22,10 @@ class CatogryPage extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: 20),
-                CustomHomeTextFild(),
+                AppInput(
+                  hintText: '',
+                  labelText: '',
+                ),
                 SizedBox(
                   height: 20,
                 ),

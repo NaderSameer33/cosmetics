@@ -7,7 +7,7 @@ import 'login.dart';
 import 'otp.dart';
 import 'widgets/custom_auth_intinal.dart';
 import 'widgets/custom_auth_logo.dart';
-import 'widgets/custom_auth_text_fild.dart';
+import '../../core/ui/app_input.dart';
 
 class CreatePasswordView extends StatefulWidget {
   const CreatePasswordView({super.key});
@@ -37,7 +37,7 @@ class _CreatePasswordViewState extends State<CreatePasswordView> {
                 ),
               ),
               const SizedBox(height: 40),
-              CustomAuthTextFild(
+              AppInput(
                 obscureText: isSecure ? false : true,
                 suffixIcon: GestureDetector(
                   onTap: () {
@@ -53,7 +53,7 @@ class _CreatePasswordViewState extends State<CreatePasswordView> {
                 labelText: 'Your Password',
               ),
               const SizedBox(height: 10),
-              CustomAuthTextFild(
+              AppInput(
                 obscureText: isSecure ? false : true,
                 suffixIcon: GestureDetector(
                   onTap: () {

@@ -65,7 +65,7 @@ class Cosmetics extends StatelessWidget {
 
 OutlineInputBorder buildBorder() {
   return OutlineInputBorder(
-    borderRadius: BorderRadius.circular(8),
+    borderRadius: BorderRadius.circular(24),
     borderSide: const BorderSide(
       color: Color(0xff5a6690),
     ),

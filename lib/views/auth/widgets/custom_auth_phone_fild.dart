@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'custom_auth_text_fild.dart';
+import '../../../core/ui/app_input.dart';
 
 class CustomPhoneAuthFild extends StatelessWidget {
   const CustomPhoneAuthFild({
@@ -39,7 +39,7 @@ class CustomPhoneAuthFild extends StatelessWidget {
         ),
         const Expanded(
           flex: 3,
-          child: CustomAuthTextFild(
+          child: AppInput(
             hintText: 'Phone Number',
             labelText: 'Phone Number',
           ),

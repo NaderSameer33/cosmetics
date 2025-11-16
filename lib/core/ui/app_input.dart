@@ -1,7 +1,8 @@
+import 'package:cosmentics/core/ui/app_image.dart';
 import 'package:flutter/material.dart';
 
-class CustomAuthTextFild extends StatefulWidget {
-  const CustomAuthTextFild({
+class AppInput extends StatelessWidget {
+  const AppInput({
     super.key,
     required this.hintText,
     required this.labelText,
@@ -16,14 +17,9 @@ class CustomAuthTextFild extends StatefulWidget {
   final bool isPassword;
 
   @override
-  State<CustomAuthTextFild> createState() => _CustomAuthTextFildState();
-}
-
-class _CustomAuthTextFildState extends State<CustomAuthTextFild> {
-  @override
   Widget build(BuildContext context) {
     return TextFormField(
-      obscureText: widget.obscureText,
+      obscureText: obscureText,
 
       cursorColor: const Color(0xff434C6D),
       validator: (value) {
@@ -33,23 +29,11 @@ class _CustomAuthTextFildState extends State<CustomAuthTextFild> {
         return null;
       },
       decoration: InputDecoration(
-        suffixIcon: Padding(
-          padding: const EdgeInsets.only(right: 16),
-          child: IconButton(
-            onPressed: () {},
-            icon: Container(),
-          ),
-        ),
+        suffixIcon: const AppImage(image: 'search.svg'),
 
-        hintText: widget.hintText,
-        labelText: widget.labelText,
+        hintText: hintText,
+        labelText: labelText,
       ),
     );
   }
 }
-
-
-
-
-
-

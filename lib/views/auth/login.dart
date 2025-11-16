@@ -2,7 +2,7 @@ import '../../core/logic/helper_methods.dart';
 import '../../core/ui/app_image.dart';
 import 'reset_password.dart';
 import 'widgets/custom_auth_phone_fild.dart';
-import 'widgets/custom_auth_text_fild.dart';
+import '../../core/ui/app_input.dart';
 import '../../core/ui/app_button.dart';
 import 'widgets/custom_dont_have_account.dart';
 import '../home/view.dart';
@@ -52,7 +52,7 @@ class _LoginViewState extends State<LoginView> {
                 const SizedBox(height: 25),
                 const CustomPhoneAuthFild(),
                 const SizedBox(height: 10),
-                const CustomAuthTextFild(
+                const AppInput(
                   hintText: ' Your Password',
                   labelText: ' Your Password',
                 ),
