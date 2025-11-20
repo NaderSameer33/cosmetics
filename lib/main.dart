@@ -1,4 +1,6 @@
 import 'package:cosmentics/views/home/view.dart';
+import 'package:cosmentics/views/on_borading.dart';
+import 'package:cosmentics/views/splash.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'core/logic/helper_methods.dart';
@@ -69,7 +71,7 @@ class Cosmetics extends StatelessWidget {
           ),
         ),
         debugShowCheckedModeBanner: false,
-        home: const HomeView(),
+        home: const SplashView(),
       ),
     );
   }

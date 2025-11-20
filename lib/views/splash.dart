@@ -1,3 +1,5 @@
+import 'package:animate_do/animate_do.dart';
+
 import '../core/logic/helper_methods.dart';
 import '../core/ui/app_image.dart';
 import 'on_borading.dart';
@@ -16,27 +18,30 @@ class _SplashViewState extends State<SplashView> {
     goTo(
       const OnBoradingView(),
       canPop: false,
-      delayedSeconds: 3,
+      delayedSeconds: 5,
     );
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            AppImage(
-              image: 'splash_logo_two.png',
-            ),
+    return Scaffold(
+      body: Dance(
+        duration: const Duration(seconds: 5),
+        child: const Center(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              AppImage(
+                image: 'splash_logo_two.png',
+              ),
 
-            SizedBox(height: 20),
-            AppImage(
-              image: 'splash_logo_one.png',
-            ),
-          ],
+              SizedBox(height: 20),
+              AppImage(
+                image: 'splash_logo_one.png',
+              ),
+            ],
+          ),
         ),
       ),
     );
