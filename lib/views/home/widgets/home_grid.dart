@@ -1,4 +1,4 @@
-import 'package:cosmentics/core/ui/app_image.dart';
+import '../../../core/ui/app_image.dart';
 import 'package:flutter/material.dart';
 
 class HomeGridView extends StatelessWidget {

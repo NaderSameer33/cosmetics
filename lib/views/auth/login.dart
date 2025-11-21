@@ -1,6 +1,6 @@
-import 'package:cosmentics/core/ui/app_input.dart';
-import 'package:cosmentics/core/ui/app_login_or_signup.dart';
-import 'package:cosmentics/views/auth/forget_password.dart';
+import '../../core/ui/app_input.dart';
+import '../../core/ui/app_login_or_signup.dart';
+import 'forget_password.dart';
 import '../../core/logic/helper_methods.dart';
 import '../../core/ui/app_image.dart';
 import '../../core/ui/app_button.dart';

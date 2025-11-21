@@ -1,9 +1,9 @@
-import 'package:cosmentics/core/logic/helper_methods.dart';
-import 'package:cosmentics/core/ui/app_image.dart';
-import 'package:cosmentics/core/ui/app_input.dart';
-import 'package:cosmentics/core/ui/app_login_or_signup.dart';
-import 'package:cosmentics/views/auth/login.dart';
-import 'package:cosmentics/views/auth/otp.dart';
+import '../../core/logic/helper_methods.dart';
+import '../../core/ui/app_image.dart';
+import '../../core/ui/app_input.dart';
+import '../../core/ui/app_login_or_signup.dart';
+import 'login.dart';
+import 'otp.dart';
 import '../../core/ui/app_button.dart';
 import 'package:flutter/material.dart';
 

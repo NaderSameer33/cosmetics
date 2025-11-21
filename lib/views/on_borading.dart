@@ -1,6 +1,6 @@
-import 'package:cosmentics/core/logic/helper_methods.dart';
-import 'package:cosmentics/core/ui/app_image.dart';
-import 'package:cosmentics/views/auth/login.dart';
+import '../core/logic/helper_methods.dart';
+import '../core/ui/app_image.dart';
+import 'auth/login.dart';
 import 'package:flutter/material.dart';
 
 class OnBoradingView extends StatefulWidget {

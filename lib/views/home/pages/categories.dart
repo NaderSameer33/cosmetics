@@ -1,4 +1,4 @@
-import 'package:cosmentics/core/ui/app_search.dart';
+import '../../../core/ui/app_search.dart';
 import '../widgets/categories_view.dart';
 import 'package:flutter/material.dart';
 

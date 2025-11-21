@@ -1,5 +1,5 @@
-import 'package:cosmentics/core/ui/app_image.dart';
-import 'package:cosmentics/views/home/widgets/cart_button.dart';
+import '../../../core/ui/app_image.dart';
+import 'cart_button.dart';
 import 'package:flutter/material.dart';
 
 class CartView extends StatelessWidget {

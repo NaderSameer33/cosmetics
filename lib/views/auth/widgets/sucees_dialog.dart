@@ -1,6 +1,6 @@
-import 'package:cosmentics/core/logic/helper_methods.dart';
-import 'package:cosmentics/views/auth/login.dart';
-import 'package:cosmentics/views/home/view.dart';
+import '../../../core/logic/helper_methods.dart';
+import '../login.dart';
+import '../../home/view.dart';
 
 import '../../../core/ui/app_button.dart';
 import '../../../core/ui/app_image.dart';

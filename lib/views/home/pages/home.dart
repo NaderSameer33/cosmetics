@@ -1,4 +1,4 @@
-import 'package:cosmentics/core/ui/app_search.dart';
+import '../../../core/ui/app_search.dart';
 
 import '../../../core/ui/app_image.dart';
 import '../widgets/home_grid.dart';

@@ -1,6 +1,6 @@
-import 'package:cosmentics/core/logic/helper_methods.dart';
-import 'package:cosmentics/views/auth/login.dart';
-import 'package:cosmentics/views/auth/sign_up.dart';
+import '../logic/helper_methods.dart';
+import '../../views/auth/login.dart';
+import '../../views/auth/sign_up.dart';
 import 'package:flutter/material.dart';
 
 class AppLoginOrSignup extends StatelessWidget {

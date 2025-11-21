@@ -1,7 +1,8 @@
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
-import 'package:cosmentics/core/ui/app_image.dart';
-import 'package:cosmentics/views/auth/login.dart';
-import 'package:cosmentics/views/auth/widgets/sucees_dialog.dart';
+import '../../core/ui/app_image.dart';
+import '../../core/ui/app_resent_otp.dart';
+import 'login.dart';
+import 'widgets/sucees_dialog.dart';
 
 import '../../core/logic/helper_methods.dart';
 import 'create_password.dart';
@@ -105,58 +106,6 @@ class OtpView extends StatelessWidget {
           ),
         ),
       ),
-    );
-  }
-}
-
-class AppResentOtp extends StatefulWidget {
-  const AppResentOtp({super.key});
-
-  @override
-  State<AppResentOtp> createState() => _AppResentOtpState();
-}
-
-class _AppResentOtpState extends State<AppResentOtp> {
-  bool isSend = true;
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        const Text(
-          'Didn’t receive a code?',
-          style: TextStyle(
-            fontSize: 12,
-          ),
-        ),
-        TextButton(
-          onPressed: isSend
-              ? null
-              : () {
-                  isSend = true;
-                  setState(() {});
-                },
-          child: const Text(
-            'Resend',
-          ),
-        ),
-        const Spacer(),
-        if (isSend)
-          CircularCountDownTimer(
-            onComplete: () {
-              setState(() {
-                isSend = false;
-              });
-            },
-            textStyle: const TextStyle(color: Color(0xff8E8EA9)),
-            isReverse: true,
-            textFormat: CountdownTextFormat.MM_SS,
-            width: 50,
-            height: 50,
-            duration: 5,
-            fillColor: Colors.transparent,
-            ringColor: Colors.transparent,
-          ),
-      ],
     );
   }
 }

@@ -1,4 +1,4 @@
-import 'package:cosmentics/core/ui/app_image.dart';
+import 'app_image.dart';
 import 'package:flutter/material.dart';
 
 class AppInput extends StatefulWidget {

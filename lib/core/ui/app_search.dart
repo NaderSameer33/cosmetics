@@ -1,4 +1,4 @@
-import 'package:cosmentics/core/ui/app_input.dart';
+import 'app_input.dart';
 import 'package:flutter/material.dart';
 
 class AppSearch extends StatelessWidget {

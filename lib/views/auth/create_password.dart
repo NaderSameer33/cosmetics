@@ -1,7 +1,7 @@
-import 'package:cosmentics/core/ui/app_button.dart';
-import 'package:cosmentics/core/ui/app_image.dart';
-import 'package:cosmentics/core/ui/app_input.dart';
-import 'package:cosmentics/views/auth/widgets/sucees_dialog.dart';
+import '../../core/ui/app_button.dart';
+import '../../core/ui/app_image.dart';
+import '../../core/ui/app_input.dart';
+import 'widgets/sucees_dialog.dart';
 import 'package:flutter/material.dart';
 
 class CreatePasswordView extends StatelessWidget {
