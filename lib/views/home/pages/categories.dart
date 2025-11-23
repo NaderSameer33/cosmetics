@@ -1,3 +1,5 @@
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import '../../../core/ui/app_search.dart';
 import '../widgets/categories_view.dart';
 import 'package:flutter/material.dart';
@@ -7,26 +9,26 @@ class CategoriesPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(
-             padding: EdgeInsets.symmetric(horizontal: 16),
+            padding: EdgeInsets.symmetric(horizontal: 16.r),
             child: Column(
               children: [
                 Text(
                   'Categories',
                   style: TextStyle(
-                    fontSize: 24,
+                    fontSize: 24.sp,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                SizedBox(height: 20),
-                AppSearch(),
+                SizedBox(height: 20.h),
+                const AppSearch(),
                 SizedBox(
-                  height: 20,
+                  height: 20.h,
                 ),
-                CategoriesView(),
+                const CategoriesView(),
               ],
             ),
           ),

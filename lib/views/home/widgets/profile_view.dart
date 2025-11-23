@@ -1,3 +1,5 @@
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import '../../../core/ui/app_image.dart';
 
 import 'package:flutter/material.dart';
@@ -67,7 +69,7 @@ class _Item extends StatelessWidget {
       title: Text(
         model.titiel,
         style: TextStyle(
-          fontSize: 16,
+          fontSize: 16.sp,
           fontWeight: FontWeight.w600,
           color: index == 5 ? const Color(0xffCD0F0F) : const Color(0xff434C6D),
         ),

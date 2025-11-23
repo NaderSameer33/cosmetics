@@ -1,3 +1,5 @@
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import '../../../core/ui/app_image.dart';
 import 'cart_button.dart';
 import 'package:flutter/material.dart';
@@ -65,7 +67,7 @@ class CartView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.separated(
-      padding: const EdgeInsets.only(bottom: 100),
+      padding:  EdgeInsets.only(bottom: 100.r),
       physics: const NeverScrollableScrollPhysics(),
       shrinkWrap: true,
       itemBuilder: (context, index) => _Item(
@@ -96,12 +98,12 @@ class _Item extends StatelessWidget {
         Stack(
           children: [
             ClipRRect(
-              borderRadius: BorderRadius.circular(12),
+              borderRadius: BorderRadius.circular(12.r),
               child: AppImage(
                 image: model.image,
                 fit: BoxFit.cover,
-                height: 100,
-                width: 100,
+                height: 100.h,
+                width: 100.w,
               ),
             ),
             IconButton(
@@ -112,16 +114,16 @@ class _Item extends StatelessWidget {
             ),
           ],
         ),
-        const SizedBox(
-          width: 8,
+         SizedBox(
+          width: 8.w,
         ),
         Expanded(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text.rich(
-                style: const TextStyle(
-                  fontSize: 12,
+                style:  TextStyle(
+                  fontSize: 12.sp,
                   fontWeight: FontWeight.bold,
                 ),
                 TextSpan(
@@ -130,8 +132,8 @@ class _Item extends StatelessWidget {
                   children: [
                     TextSpan(
                       text: "${model.subTitle}\n",
-                      style: const TextStyle(
-                        fontSize: 10,
+                      style:  TextStyle(
+                        fontSize: 10.sp,
                         fontWeight: FontWeight.normal,
                       ),
                     ),

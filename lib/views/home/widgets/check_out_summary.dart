@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CheckOutSummary extends StatelessWidget {
   const CheckOutSummary({
@@ -7,28 +8,28 @@ class CheckOutSummary extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
+    return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           '- REVIEW PAYMENT',
           style: TextStyle(
-            fontSize: 12,
+            fontSize: 12.sp,
           ),
         ),
         SizedBox(
-          height: 20,
+          height: 20.h,
         ),
         Text(
           'PAYMENT SUMMARY',
           style: TextStyle(
-            fontSize: 20,
+            fontSize: 20.sp,
           ),
         ),
         SizedBox(
-          height: 30,
+          height: 30.h,
         ),
-        Row(
+        const Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
@@ -40,9 +41,9 @@ class CheckOutSummary extends StatelessWidget {
           ],
         ),
         SizedBox(
-          height: 10,
+          height: 10.h,
         ),
-        Row(
+        const Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(

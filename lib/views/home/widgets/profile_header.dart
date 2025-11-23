@@ -1,3 +1,5 @@
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import '../../../core/ui/app_image.dart';
 import 'package:flutter/material.dart';
 
@@ -12,7 +14,7 @@ class ProfileHeader extends StatelessWidget {
       clipBehavior: Clip.none,
       children: [
         Container(
-          height: 150,
+          height: 150.h,
           width: double.infinity,
           decoration: const BoxDecoration(
             gradient: LinearGradient(
@@ -26,13 +28,13 @@ class ProfileHeader extends StatelessWidget {
             ),
           ),
         ),
-        const Positioned(
+        Positioned(
           right: 0,
           left: 0,
           bottom: -50,
           child: CircleAvatar(
-            radius: 50,
-            child: AppImage(
+            radius: 50.r,
+            child: const AppImage(
               image: 'prof.png',
             ),
           ),

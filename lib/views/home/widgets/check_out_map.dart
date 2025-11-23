@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class CheckoutMap extends StatefulWidget {
@@ -28,21 +29,21 @@ class _CheckoutMapState extends State<CheckoutMap> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
-      height: 84,
+      padding:  EdgeInsets.symmetric(horizontal: 16.r),
+      height: 84.h,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(30),
+        borderRadius: BorderRadius.circular(30.r),
         color: Colors.transparent,
         border: Border.all(
           color: const Color(0xff73B9BB),
-          width: 1.5,
+          width: 1.5.w,
         ),
       ),
       child: Row(
         children: [
           SizedBox(
-            height: 60,
-            width: 90,
+            height: 60.h,
+            width: 90.w,
 
             child: GoogleMap(
               zoomControlsEnabled: false,
@@ -54,10 +55,10 @@ class _CheckoutMapState extends State<CheckoutMap> {
               },
             ),
           ),
-          const SizedBox(
-            width: 5,
+           SizedBox(
+            width: 5.w,
           ),
-          const Expanded(
+           Expanded(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -65,13 +66,13 @@ class _CheckoutMapState extends State<CheckoutMap> {
                 Text(
                   'Home',
                   style: TextStyle(
-                    fontSize: 10,
+                    fontSize: 10.sp,
                   ),
                 ),
                 Text(
                   'Mansoura 14  St',
                   style: TextStyle(
-                    fontSize: 10,
+                    fontSize: 10.sp,
                   ),
                 ),
               ],

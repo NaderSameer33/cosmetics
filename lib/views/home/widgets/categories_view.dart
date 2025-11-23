@@ -1,3 +1,5 @@
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import '../../../core/ui/app_image.dart';
 import 'package:flutter/material.dart';
 
@@ -50,7 +52,7 @@ class CategoriesView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.separated(
-      padding: const EdgeInsets.only(bottom: 100),
+      padding:  EdgeInsets.only(bottom: 100.r),
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
       itemCount: _list.length,
@@ -73,17 +75,17 @@ class _Item extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       leading: ClipRRect(
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(16.r),
         child: AppImage(
           image: model.image,
-          height: 64,
-          width: 64,
+          height: 64.h,
+          width: 64.w,
         ),
       ),
       title: Text(
         model.title,
-        style: const TextStyle(
-          fontSize: 14,
+        style:  TextStyle(
+          fontSize: 14.sp,
           fontWeight: FontWeight.bold,
         ),
       ),

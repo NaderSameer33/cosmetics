@@ -1,3 +1,5 @@
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import '../../../core/ui/app_image.dart';
 import 'package:flutter/material.dart';
 
@@ -49,20 +51,19 @@ class HomeGridView extends StatelessWidget {
     ),
   ];
 
-
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
-      padding: const EdgeInsets.only(bottom: 100),
+      padding: EdgeInsets.only(bottom: 100.r),
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
         mainAxisSpacing: 12,
         crossAxisSpacing: 12,
-        
+
         childAspectRatio: 176 / 237,
       ),
       shrinkWrap: true,
-        
+
       itemCount: _list.length,
       physics: const NeverScrollableScrollPhysics(),
       itemBuilder: (context, index) {
@@ -81,15 +82,15 @@ class _Item extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(8),
+      padding: EdgeInsets.all(8.r),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(8),
+        borderRadius: BorderRadius.circular(8.r),
         color: const Color(0xffD9D9D9),
         boxShadow: [
-          const BoxShadow(
-            blurRadius: 10,
+          BoxShadow(
+            blurRadius: 10.r,
             spreadRadius: 0,
-            offset: Offset(0, 1),
+            offset: const Offset(0, 1),
             blurStyle: BlurStyle.inner,
             color: Colors.black,
           ),
@@ -102,7 +103,7 @@ class _Item extends StatelessWidget {
             alignment: Alignment.topRight,
             children: [
               ClipRRect(
-                borderRadius: BorderRadius.circular(4),
+                borderRadius: BorderRadius.circular(4.r),
                 child: AppImage(
                   fit: BoxFit.cover,
                   image: prodcutModel.image,
@@ -110,39 +111,39 @@ class _Item extends StatelessWidget {
                 ),
               ),
               Container(
-                margin: const EdgeInsets.only(right: 6, top: 6),
-                padding: const EdgeInsets.all(8),
-                height: 32,
-                width: 32,
+                margin: EdgeInsets.only(right: 6.r, top: 6.r),
+                padding: EdgeInsets.all(8.r),
+                height: 32.h,
+                width: 32.w,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8),
+                  borderRadius: BorderRadius.circular(8.r),
                   color: Colors.white,
                 ),
-                child: const AppImage(
+                child: AppImage(
                   image: 'home_card.svg',
-                  height: 16,
-                  width: 16,
+                  height: 16.h,
+                  width: 16.w,
                 ),
               ),
             ],
           ),
-          const SizedBox(height: 10),
+          SizedBox(height: 10.h),
           Text(
             prodcutModel.title,
-            style: const TextStyle(
+            style: TextStyle(
               fontWeight: FontWeight.bold,
 
-              fontSize: 14,
+              fontSize: 14.sp,
             ),
           ),
-          const SizedBox(
-            height: 5,
+          SizedBox(
+            height: 5.h,
           ),
           Text(
             prodcutModel.price,
-            style: const TextStyle(
-              color: Color(0xff70839C),
-              fontSize: 12,
+            style: TextStyle(
+              color: const Color(0xff70839C),
+              fontSize: 12.sp,
               fontWeight: FontWeight.bold,
             ),
           ),

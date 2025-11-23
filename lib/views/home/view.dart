@@ -1,3 +1,5 @@
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import '../../core/ui/app_image.dart';
 import 'pages/cart.dart';
 import 'pages/categories.dart';
@@ -29,7 +31,7 @@ class _HomeViewState extends State<HomeView> {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: Container(
         clipBehavior: Clip.antiAliasWithSaveLayer,
-        margin: const EdgeInsets.symmetric(horizontal: 13),
+        margin:  EdgeInsets.symmetric(horizontal: 13.r),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(25),
           boxShadow: [

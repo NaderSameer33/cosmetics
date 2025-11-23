@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CheckOutHeader extends StatelessWidget {
   const CheckOutHeader({
@@ -8,12 +9,12 @@ class CheckOutHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 8),
+      padding:  EdgeInsets.only(left: 8.r),
       child: Row(
         children: [
           CircleAvatar(
             backgroundColor: Colors.grey.withValues(alpha: .4),
-            radius: 18,
+            radius: 18.r,
             child: IconButton(
               onPressed: () => Navigator.pop(context),
               icon: const Icon(
@@ -23,10 +24,10 @@ class CheckOutHeader extends StatelessWidget {
           ),
           const Spacer(),
 
-          const Text(
+           Text(
             'Checkout',
             style: TextStyle(
-              fontSize: 24,
+              fontSize: 24.sp,
               fontWeight: FontWeight.bold,
             ),
           ),

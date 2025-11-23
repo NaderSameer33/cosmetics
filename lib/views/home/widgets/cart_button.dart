@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CartButton extends StatefulWidget {
   const CartButton({
@@ -15,7 +16,7 @@ class _CartButtonState extends State<CartButton> {
   Widget build(BuildContext context) {
     return DecoratedBox(
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
+        borderRadius: BorderRadius.circular(10.r),
         border: BoxBorder.all(
           color: const Color(0xff8E8EA9),
         ),
@@ -36,8 +37,8 @@ class _CartButtonState extends State<CartButton> {
           ),
           Text(
             '$number',
-            style: const TextStyle(
-              fontSize: 16,
+            style:  TextStyle(
+              fontSize: 16.sp,
               fontWeight: FontWeight.bold,
             ),
           ),

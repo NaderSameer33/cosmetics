@@ -1,3 +1,5 @@
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import '../widgets/check_out_header.dart';
 import '../widgets/check_out_summary.dart';
 
@@ -16,20 +18,20 @@ class CheckoutPage extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              const SizedBox(
-                height: 24,
+              SizedBox(
+                height: 24.h,
               ),
               const CheckOutHeader(),
-              const SizedBox(
-                height: 20,
+              SizedBox(
+                height: 20.h,
               ),
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: 41),
+                padding: EdgeInsets.symmetric(horizontal: 41.r),
                 width: double.infinity,
                 decoration: BoxDecoration(
-                  borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(20),
-                    topRight: Radius.circular(20),
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(20.r),
+                    topRight: Radius.circular(20.r),
                   ),
 
                   color: const Color(0x4329d3da).withValues(alpha: .1),
@@ -37,43 +39,43 @@ class CheckoutPage extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    const SizedBox(height: 20),
-                    const Text(
+                    SizedBox(height: 20.h),
+                    Text(
                       'Delivery to',
                       style: TextStyle(
-                        fontSize: 14,
+                        fontSize: 14.sp,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    const SizedBox(height: 18),
+                    SizedBox(height: 18.h),
                     const CheckoutMap(),
-                    const SizedBox(height: 40),
-                    const Text(
+                    SizedBox(height: 40.h),
+                    Text(
                       'Payment Method',
                       style: TextStyle(
-                        fontSize: 14,
+                        fontSize: 14.sp,
                       ),
                     ),
-                    const SizedBox(height: 18),
+                    SizedBox(height: 18.h),
                     const CheckOutPayment(
                       isCheckd: true,
                     ),
-                    const SizedBox(height: 12),
+                    SizedBox(height: 12.h),
                     const CheckOutPayment(),
-                    const SizedBox(height: 31),
+                    SizedBox(height: 31.h),
                     Text(
                       '_ \t' * 100,
                       maxLines: 1,
                     ),
-                    const SizedBox(height: 30),
+                    SizedBox(height: 30.h),
                     const CheckOutSummary(),
-                    const SizedBox(height: 20),
+                    SizedBox(height: 20.h),
                     const Divider(
                       thickness: 1,
                       color: Color(0xff73B9BB),
                     ),
-                    const SizedBox(
-                      height: 10,
+                    SizedBox(
+                      height: 10.h,
                     ),
                     const Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -86,7 +88,7 @@ class CheckoutPage extends StatelessWidget {
                         ),
                       ],
                     ),
-                    const SizedBox(height: 10),
+                    SizedBox(height: 10.h),
                     AppButton(title: 'ORDER', onPressed: () {}),
                   ],
                 ),

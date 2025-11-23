@@ -1,3 +1,5 @@
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import '../widgets/profile_view.dart';
 import '../widgets/profile_header.dart';
 import 'package:flutter/material.dart';
@@ -7,22 +9,22 @@ class ProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: SingleChildScrollView(
         child: Column(
           children: [
-            ProfileHeader(),
+            const ProfileHeader(),
             SizedBox(
-              height: 60,
+              height: 60.h,
             ),
             Text(
               'Nader Sameer Gaber',
               style: TextStyle(
-                fontSize: 16,
+                fontSize: 16.sp,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            ProfileView(),
+            const ProfileView(),
           ],
         ),
       ),

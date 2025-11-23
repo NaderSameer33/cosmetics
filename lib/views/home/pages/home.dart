@@ -1,3 +1,5 @@
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import '../../../core/ui/app_search.dart';
 
 import '../../../core/ui/app_image.dart';
@@ -11,25 +13,25 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
+        padding: EdgeInsets.symmetric(horizontal: 16.r),
 
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const SizedBox(
-              height: 10,
+            SizedBox(
+              height: 10.h,
             ),
             const AppSearch(),
 
-            const SizedBox(height: 12),
+            SizedBox(height: 12.h),
             ClipRRect(
-              borderRadius: BorderRadius.circular(20),
+              borderRadius: BorderRadius.circular(20.r),
               child: Stack(
                 alignment: Alignment.center,
                 children: [
-                  const AppImage(
+                  AppImage(
                     image: 'home_makup.png',
-                    height: 320,
+                    height: 320.h,
                     width: double.infinity,
                     fit: BoxFit.cover,
                   ),
@@ -37,8 +39,8 @@ class HomePage extends StatelessWidget {
                     decoration: BoxDecoration(
                       color: const Color(0xffE9DCD3).withValues(alpha: .8),
                     ),
-                    padding: const EdgeInsets.all(20),
-                    child: const Column(
+                    padding: EdgeInsets.all(20.r),
+                    child: Column(
                       children: [
                         Row(
                           children: [
@@ -46,28 +48,28 @@ class HomePage extends StatelessWidget {
                               child: Text(
                                 '50% OFF DISCOUNT \n CUPON CODE : 125865',
                                 style: TextStyle(
-                                  fontSize: 16,
+                                  fontSize: 16.sp,
                                   fontWeight: FontWeight.bold,
-                                  color: Color(0xff62322D),
+                                  color: const Color(0xff62322D),
                                 ),
                               ),
                             ),
-                            AppImage(
+                            const AppImage(
                               image: 'offer.svg',
                             ),
                           ],
                         ),
                         SizedBox(
-                          height: 12,
+                          height: 12.h,
                         ),
                         Row(
                           children: [
-                            AppImage(image: 'offer.svg'),
-                            Spacer(),
+                            const AppImage(image: 'offer.svg'),
+                            const Spacer(),
                             Text(
                               'Hurry up! \n Skin care only !',
                               style: TextStyle(
-                                fontSize: 16,
+                                fontSize: 16.sp,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
@@ -80,15 +82,15 @@ class HomePage extends StatelessWidget {
               ),
             ),
 
-            const SizedBox(height: 10),
-            const Text(
+            SizedBox(height: 10.h),
+            Text(
               'Top rated products',
               style: TextStyle(
-                fontSize: 16,
+                fontSize: 16.sp,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            const SizedBox(height: 12),
+            SizedBox(height: 12.h),
             const HomeGridView(),
           ],
         ),
