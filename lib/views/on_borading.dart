@@ -1,5 +1,4 @@
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../core/logic/helper_methods.dart';
 import '../core/ui/app_image.dart';
 import 'auth/login.dart';
@@ -84,20 +83,22 @@ class _OnBoradingItem extends StatelessWidget {
                       style: TextButton.styleFrom(
                         foregroundColor: const Color(0xff434C6D),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        goTo(const LoginView());
+                      },
                       child: const Text(
                         'Skip',
                       ),
                     ),
                   )
                 : Container(),
-             SizedBox(
+            SizedBox(
               height: 50.h,
             ),
             AppImage(
               image: onBordingModel.image,
             ),
-             SizedBox(
+            SizedBox(
               height: 30.h,
             ),
             Text(
@@ -110,7 +111,7 @@ class _OnBoradingItem extends StatelessWidget {
                     : Colors.white,
               ),
             ),
-             SizedBox(
+            SizedBox(
               height: 10.h,
             ),
             Text(
@@ -123,7 +124,7 @@ class _OnBoradingItem extends StatelessWidget {
               ),
               textAlign: TextAlign.center,
             ),
-             SizedBox(
+            SizedBox(
               height: 20.h,
             ),
             if (currentIndex == 0 || currentIndex == 1)
@@ -149,7 +150,7 @@ class _OnBoradingItem extends StatelessWidget {
                 onPressed: () {
                   goTo(const LoginView(), canPop: false);
                 },
-                child:  Text(
+                child: Text(
                   'let’s start!',
                   style: TextStyle(
                     fontSize: 16.sp,

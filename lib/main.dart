@@ -1,9 +1,9 @@
-import 'views/home/view.dart';
+import 'package:cosmentics/views/splash.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'core/logic/helper_methods.dart';
 import 'package:flutter/material.dart';
 
-void main() {
+void main() async {
   runApp(const Cosmetics());
 }
 
@@ -26,7 +26,9 @@ class Cosmetics extends StatelessWidget {
             ),
           ),
 
-          colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xffD75D72)),
+          colorScheme: ColorScheme.fromSeed(
+            seedColor: const Color(0xffD75D72),
+          ),
           scaffoldBackgroundColor: const Color(
             0xffD9D9D9,
           ),
@@ -47,7 +49,7 @@ class Cosmetics extends StatelessWidget {
             ),
             hintStyle: const TextStyle(
               color: Color(0xff8E8EA9),
-              fontSize: 12
+              fontSize: 12,
             ),
             floatingLabelStyle: const TextStyle(
               fontSize: 14,
@@ -71,8 +73,9 @@ class Cosmetics extends StatelessWidget {
           ),
         ),
         debugShowCheckedModeBanner: false,
-        home: const HomeView (),
-    )) ; 
+        home: const SplashView(),
+      ),
+    );
   }
 }
 

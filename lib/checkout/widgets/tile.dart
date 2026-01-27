@@ -7,10 +7,12 @@ class _Tile extends StatelessWidget {
     this.traling,
     this.subTitle,
     this.padding = 0,
+    this.onTap
   });
   final String title;
   final String? subTitle, leading, traling;
   final double padding;
+  final VoidCallback ? onTap ; 
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +26,9 @@ class _Tile extends StatelessWidget {
         ),
       ),
       leading: leading != null
-          ? AppImage(image: leading!)
+          ? GestureDetector(
+            onTap: onTap,
+            child: AppImage(image: leading!))
           : Container(
               color: Colors.red,
               height: 100,

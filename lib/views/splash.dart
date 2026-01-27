@@ -21,6 +21,7 @@ class _SplashViewState extends State<SplashView> {
       canPop: false,
       delayedSeconds: 5,
     );
+
     super.initState();
   }
 

@@ -28,8 +28,8 @@ class AppImage extends StatelessWidget {
 
     if (image.toLowerCase().endsWith('svg')) {
       child = SvgPicture.asset(
-        'assets/svg/$image',
-        color: color,
+        'assets/icons/$image',
+        color: color, 
         height: height,
         width: width,
         fit: myFit,

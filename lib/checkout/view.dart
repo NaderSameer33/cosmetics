@@ -1,5 +1,7 @@
+import 'package:cosmentics/core/logic/helper_methods.dart';
 import 'package:cosmentics/core/ui/app_back_button.dart';
 import 'package:cosmentics/core/ui/app_image.dart';
+import 'package:cosmentics/views/google_maps.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../core/ui/app_button.dart';
 import 'package:flutter/material.dart';
@@ -60,6 +62,10 @@ class CheckoutView extends StatelessWidget {
                       subTitle: 'Home Mansourea , 14 Porsaid S',
                       traling: 'check_out_arrow.svg',
                       padding: 15.r,
+                      leading: 'map.png',
+                      onTap: () {
+                        goTo(const GoogleMapsView());
+                      },
                     ),
                     SizedBox(height: 40.h),
                     Text(
