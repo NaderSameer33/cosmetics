@@ -66,7 +66,6 @@ class _AppInputState extends State<AppInput> {
               ),
             ),
           ),
-
         Expanded(
           child: TextFormField(
             obscureText: isHidden && widget.isSuffix,

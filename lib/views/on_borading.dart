@@ -12,7 +12,7 @@ class OnBoradingView extends StatefulWidget {
 }
 
 class _OnBoradingViewState extends State<OnBoradingView> {
-  final onBoradingList = [
+  final _onBoradingList = [
     _Model(
       image: 'on_borading_one.png',
       title: 'WELCOME!',
@@ -42,23 +42,14 @@ class _OnBoradingViewState extends State<OnBoradingView> {
           setState(() {});
         },
 
-        itemCount: onBoradingList.length,
+        itemCount: _onBoradingList.length,
         itemBuilder: (context, index) => _OnBoradingItem(
           currentIndex: currentIndex,
-          onBordingModel: onBoradingList[index],
+          onBordingModel: _onBoradingList[index],
         ),
       ),
     );
   }
-}
-
-class _Model {
-  final String image, title, subTitle;
-  _Model({
-    required this.image,
-    required this.subTitle,
-    required this.title,
-  });
 }
 
 class _OnBoradingItem extends StatelessWidget {
@@ -143,18 +134,21 @@ class _OnBoradingItem extends StatelessWidget {
                 ),
               )
             else
-              FilledButton(
-                style: FilledButton.styleFrom(
-                  backgroundColor: const Color(0xff434C6D),
-                ),
-                onPressed: () {
-                  goTo(const LoginView(), canPop: false);
-                },
-                child: Text(
-                  'let’s start!',
-                  style: TextStyle(
-                    fontSize: 16.sp,
-                    fontWeight: FontWeight.w600,
+              Padding(
+                padding: const EdgeInsets.only(top: 50, right: 60, left: 60),
+                child: FilledButton(
+                  style: FilledButton.styleFrom(
+                    backgroundColor: const Color(0xff434C6D),
+                  ),
+                  onPressed: () {
+                    goTo(const LoginView(), canPop: false);
+                  },
+                  child: Text(
+                    'let’s start!',
+                    style: TextStyle(
+                      fontSize: 16.sp,
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
                 ),
               ),
@@ -163,4 +157,13 @@ class _OnBoradingItem extends StatelessWidget {
       ),
     );
   }
+}
+
+class _Model {
+  final String image, title, subTitle;
+  _Model({
+    required this.image,
+    required this.subTitle,
+    required this.title,
+  });
 }
