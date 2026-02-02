@@ -10,45 +10,18 @@ class GoogleMapsView extends StatefulWidget {
 }
 
 class _GoogleMapsViewState extends State<GoogleMapsView> {
-  final CameraPosition _cameraPosition = const CameraPosition(
-    target: LatLng(31.0447334525171, 31.34972404160145),
-    zoom: 14,
-  );
-  final _controller = Completer<GoogleMapController>();
-  String? mapStyle;
-
-  @override
-  void initState() {
-    super.initState();
-    setStyle();
-  }
-
-  Future<void> setStyle() async {
-    final style = await DefaultAssetBundle.of(
-      context,
-    ).loadString('assets/lotties/map_style.json');
-    setState(() {
-      mapStyle = style;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+    return const Scaffold(
       body: GoogleMap(
-        markers: {
-          const Marker(
-            position: LatLng(31.0447334525171, 31.34972404160145),
-            markerId: MarkerId('mansoura'),
-          ),
-        },
-        style: mapStyle,
-        initialCameraPosition: _cameraPosition,
+        liteModeEnabled: true,
+
+        myLocationButtonEnabled: false,
         mapType: MapType.hybrid,
-        onMapCreated: (GoogleMapController controller) {
-          _controller.complete(controller);
-        },
+        initialCameraPosition: CameraPosition(
+          target: LatLng(31.03855616745037, 31.337922322532297),
+          zoom: 16,
+        ),
       ),
     );
   }

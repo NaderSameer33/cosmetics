@@ -98,5 +98,10 @@ class _Item extends StatelessWidget {
 
 class _Model {
   final String image, title;
-  const _Model(this.image, this.title);
+  const  _Model(this.image, this.title);
+   
+
+
+  
 }
+

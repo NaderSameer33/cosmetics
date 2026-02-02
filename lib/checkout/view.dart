@@ -3,6 +3,7 @@ import 'package:cosmentics/core/ui/app_back_button.dart';
 import 'package:cosmentics/core/ui/app_image.dart';
 import 'package:cosmentics/views/google_maps.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:maps_launcher/maps_launcher.dart';
 import '../core/ui/app_button.dart';
 import 'package:flutter/material.dart';
 part 'widgets/summary.dart';

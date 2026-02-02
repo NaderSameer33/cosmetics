@@ -38,27 +38,24 @@ class Cosmetics extends StatelessWidget {
             ),
           ),
 
-          inputDecorationTheme: InputDecorationTheme(
-            contentPadding: const EdgeInsets.symmetric(
+          inputDecorationTheme: const InputDecorationTheme(
+            contentPadding: EdgeInsets.symmetric(
               horizontal: 16,
               vertical: 0,
             ),
-            suffixIconColor: const Color(0xff8E8EA9),
-            labelStyle: const TextStyle(
+            suffixIconColor: Color(0xff8E8EA9),
+            labelStyle: TextStyle(
               color: Color(0xff8E8EA9),
             ),
-            hintStyle: const TextStyle(
+            hintStyle: TextStyle(
               color: Color(0xff8E8EA9),
               fontSize: 12,
             ),
-            floatingLabelStyle: const TextStyle(
+            floatingLabelStyle: TextStyle(
               fontSize: 14,
             ),
 
-            border: buildBorder(),
-            enabledBorder: buildBorder(),
-            focusedBorder: buildBorder(),
-            errorStyle: const TextStyle(height: .1, fontSize: 12),
+            errorStyle: TextStyle(height: .1, fontSize: 12),
           ),
 
           filledButtonTheme: FilledButtonThemeData(
@@ -77,13 +74,4 @@ class Cosmetics extends StatelessWidget {
       ),
     );
   }
-}
-
-OutlineInputBorder buildBorder() {
-  return OutlineInputBorder(
-    borderRadius: BorderRadius.circular(8),
-    borderSide: const BorderSide(
-      color: Color(0xff5a6690),
-    ),
-  );
 }

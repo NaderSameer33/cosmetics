@@ -11,10 +11,12 @@ class AppInput extends StatefulWidget {
     this.label,
     this.withCountryCode = false,
     this.isSuffix = false,
+    this.isSearch = false,
   });
   final String? suffixIcon, hintText, label;
   final bool withCountryCode;
   final bool isSuffix;
+  final bool isSearch;
 
   @override
   State<AppInput> createState() => _AppInputState();
@@ -36,18 +38,16 @@ class _AppInputState extends State<AppInput> {
       children: [
         if (widget.withCountryCode)
           Padding(
-            padding:  EdgeInsetsDirectional.only(end: 6.r),
+            padding: EdgeInsetsDirectional.only(end: 6.r),
             child: DecoratedBox(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8.r),
                 border: Border.all(
-                  color: Theme.of(
-                    context,
-                  ).inputDecorationTheme.enabledBorder!.borderSide.color,
+                  color: const Color(0xff5a6690),
                 ),
               ),
               child: DropdownButton(
-                padding:  EdgeInsets.symmetric(horizontal: 16.r),
+                padding: EdgeInsets.symmetric(horizontal: 16.r),
                 value: currentCuntryIndex,
                 items: list
                     .map(
@@ -71,6 +71,9 @@ class _AppInputState extends State<AppInput> {
           child: TextFormField(
             obscureText: isHidden && widget.isSuffix,
             decoration: InputDecoration(
+              border: buildBorder(),
+              enabledBorder: buildBorder(),
+              focusedBorder: buildBorder(),
               labelText: widget.label,
 
               hintText: widget.hintText,
@@ -97,4 +100,13 @@ class _AppInputState extends State<AppInput> {
       ],
     );
   }
+}
+
+OutlineInputBorder buildBorder() {
+  return OutlineInputBorder(
+    borderRadius: BorderRadius.circular(8),
+    borderSide: const BorderSide(
+      color: Color(0xff5a6690),
+    ),
+  );
 }
