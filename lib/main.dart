@@ -1,9 +1,12 @@
+import 'package:cosmentics/core/logic/cache_helper.dart';
 import 'package:cosmentics/views/splash.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'core/logic/helper_methods.dart';
 import 'package:flutter/material.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await CacheHelper.init();
   runApp(const Cosmetics());
 }
 

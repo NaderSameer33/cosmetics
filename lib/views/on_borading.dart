@@ -1,3 +1,5 @@
+import 'package:cosmentics/core/logic/cache_helper.dart';
+import 'package:cosmentics/main.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../core/logic/helper_methods.dart';
 import '../core/ui/app_image.dart';
@@ -140,7 +142,8 @@ class _OnBoradingItem extends StatelessWidget {
                   style: FilledButton.styleFrom(
                     backgroundColor: const Color(0xff434C6D),
                   ),
-                  onPressed: () {
+                  onPressed: ()  {
+                     CacheHelper.setIsFirstTime(); 
                     goTo(const LoginView(), canPop: false);
                   },
                   child: Text(

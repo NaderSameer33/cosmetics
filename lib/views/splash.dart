@@ -1,4 +1,6 @@
 import 'package:animate_do/animate_do.dart';
+import 'package:cosmentics/core/logic/cache_helper.dart';
+import 'package:cosmentics/views/auth/login.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../core/logic/helper_methods.dart';
@@ -16,8 +18,10 @@ class SplashView extends StatefulWidget {
 class _SplashViewState extends State<SplashView> {
   @override
   void initState() {
+    bool isFirstTime = CacheHelper.getIsFirstTime();
+
     goTo(
-      const OnBoradingView(),
+      isFirstTime ? const OnBoradingView() : const LoginView(),
       canPop: false,
       delayedSeconds: 5,
     );

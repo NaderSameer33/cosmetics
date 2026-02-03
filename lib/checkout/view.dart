@@ -1,8 +1,9 @@
 import 'package:cosmentics/core/logic/helper_methods.dart';
 import 'package:cosmentics/core/ui/app_back_button.dart';
 import 'package:cosmentics/core/ui/app_image.dart';
-import 'package:cosmentics/views/google_maps.dart';
+import 'package:cosmentics/views/pin_location.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:maps_launcher/maps_launcher.dart';
 import '../core/ui/app_button.dart';
 import 'package:flutter/material.dart';
@@ -62,11 +63,46 @@ class CheckoutView extends StatelessWidget {
                       title: 'Home',
                       subTitle: 'Home Mansourea , 14 Porsaid S',
                       traling: 'check_out_arrow.svg',
-                      padding: 15.r,
-                      leading: 'map.png',
-                      onTap: () {
-                        goTo(const GoogleMapsView());
-                      },
+                      leading: ClipRRect(
+                        borderRadius: BorderRadius.circular(8.r),
+                        child: SizedBox(
+                          height: 60.h,
+                          width: 90.w,
+                          child: GestureDetector(
+                            onTap: () {
+                              goTo(const PinLocationView());
+                              // MapsLauncher.launchCoordinates(
+                              //   31.129047430376474,
+                              //   31.28128794844732,
+                              // );
+                            },
+                            child: AbsorbPointer(
+                              absorbing: true,
+                              child: GoogleMap(
+                                markers: {
+                                  const Marker(
+                                    markerId: MarkerId('MyLocation'),
+                                    position: LatLng(
+                                      31.129047430376474,
+                                      31.28128794844732,
+                                    ),
+                                  ),
+                                },
+                                myLocationButtonEnabled: false,
+                                liteModeEnabled: true,
+                                zoomControlsEnabled: false,
+                                initialCameraPosition: const CameraPosition(
+                                  zoom: 16,
+                                  target: LatLng(
+                                    31.129047430376474,
+                                    31.28128794844732,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
                     ),
                     SizedBox(height: 40.h),
                     Text(
@@ -82,14 +118,14 @@ class CheckoutView extends StatelessWidget {
                     const _Tile(
                       title: '**************256',
                       traling: 'check_out_arrow.svg',
-                      leading: 'misa.svg',
+                      leading: AppImage(image: 'misa.svg'),
                     ),
                     SizedBox(
                       height: 18.h,
                     ),
                     const _Tile(
                       title: 'Add vaucher',
-                      leading: 'voucher.svg',
+                      leading: AppImage(image: 'voucher.svg'),
                     ),
                     SizedBox(height: 30.h),
 

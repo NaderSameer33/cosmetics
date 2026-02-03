@@ -1,18 +1,18 @@
 part of '../view.dart';
+
 class _Tile extends StatelessWidget {
   const _Tile({
     super.key,
     required this.title,
-    this.leading,
     this.traling,
     this.subTitle,
     this.padding = 0,
-    this.onTap
+    this.leading,
   });
   final String title;
-  final String? subTitle, leading, traling;
+  final String? subTitle, traling;
   final double padding;
-  final VoidCallback ? onTap ; 
+  final Widget? leading;
 
   @override
   Widget build(BuildContext context) {
@@ -25,15 +25,13 @@ class _Tile extends StatelessWidget {
           width: 1.5,
         ),
       ),
-      leading: leading != null
-          ? GestureDetector(
-            onTap: onTap,
-            child: AppImage(image: leading!))
-          : Container(
-              color: Colors.red,
-              height: 100,
-              width: 100,
-            ),
+      leading:
+          leading ??
+          Container(
+            color: Colors.red,
+            height: 100,
+            width: 100,
+          ),
       title: Text(
         title,
         style: TextStyle(
