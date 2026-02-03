@@ -1,6 +1,6 @@
 import 'package:animate_do/animate_do.dart';
-import 'package:cosmentics/core/logic/cache_helper.dart';
-import 'package:cosmentics/views/auth/login.dart';
+import '../core/logic/cache_helper.dart';
+import 'auth/login.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../core/logic/helper_methods.dart';

@@ -1,5 +1,5 @@
-import 'package:cosmentics/core/logic/cache_helper.dart';
-import 'package:cosmentics/main.dart';
+import '../core/logic/cache_helper.dart';
+import '../main.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../core/logic/helper_methods.dart';
 import '../core/ui/app_image.dart';

@@ -1,7 +1,7 @@
-import 'package:cosmentics/core/logic/helper_methods.dart';
-import 'package:cosmentics/core/ui/app_back_button.dart';
-import 'package:cosmentics/core/ui/app_image.dart';
-import 'package:cosmentics/views/pin_location.dart';
+import '../core/logic/helper_methods.dart';
+import '../core/ui/app_back_button.dart';
+import '../core/ui/app_image.dart';
+import '../views/pin_location.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:maps_launcher/maps_launcher.dart';
