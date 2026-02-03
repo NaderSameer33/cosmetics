@@ -9,43 +9,44 @@ class AppCountryCode extends StatefulWidget {
 }
 
 class _AppCountryCodeState extends State<AppCountryCode> {
-  late int currentCuntryIndex;
+  late int currentCountryIndex;
   final list = [10, 20, 30, 40];
   @override
   void initState() {
     super.initState();
-    currentCuntryIndex = list.first ;
+    currentCountryIndex = list.first;
   }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
-            padding: EdgeInsetsDirectional.only(end: 6.r),
-            child: DecoratedBox(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8.r),
-                border: Border.all(
-                  color: const Color(0xff5a6690),
-                ),
-              ),
-              child: DropdownButton(
-                padding: EdgeInsets.symmetric(horizontal: 16.r),
-                value: currentCuntryIndex,
-                items: list
-                    .map(
-                      (e) => DropdownMenuItem<int>(
-                        value: e,
-                        child: Text('$e'),
-                      ),
-                    )
-                    .toList(),
+      padding: EdgeInsetsDirectional.only(end: 6.r),
+      child: DecoratedBox(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(8.r),
+          border: Border.all(
+            color: const Color(0xff5a6690),
+          ),
+        ),
+        child: DropdownButton(
+          padding: EdgeInsets.symmetric(horizontal: 16.r),
+          value: currentCountryIndex,
+          items: list.map((buildDropDownItem)).toList(),
 
-                onChanged: (value) {
-                  setState(() {
-                    currentCuntryIndex = value!;
-                  });
-                },
-              ),
-            ),
-          ); 
+          onChanged: (value) {
+            setState(() {
+              currentCountryIndex = value!;
+            });
+          },
+        ),
+      ),
+    );
+  }
+
+  DropdownMenuItem<int> buildDropDownItem(int item) {
+    return DropdownMenuItem(
+      value: item,
+      child: Text(item.toString()),
+    );
   }
 }

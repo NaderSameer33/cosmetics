@@ -1,5 +1,4 @@
 import 'package:cosmentics/core/ui/app_country_code.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'app_image.dart';
 import 'package:flutter/material.dart';
