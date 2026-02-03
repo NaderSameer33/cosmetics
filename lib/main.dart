@@ -42,10 +42,6 @@ class Cosmetics extends StatelessWidget {
           ),
 
           inputDecorationTheme: const InputDecorationTheme(
-            contentPadding: EdgeInsets.symmetric(
-              horizontal: 16,
-              vertical: 0,
-            ),
             suffixIconColor: Color(0xff8E8EA9),
             labelStyle: TextStyle(
               color: Color(0xff8E8EA9),
@@ -57,8 +53,6 @@ class Cosmetics extends StatelessWidget {
             floatingLabelStyle: TextStyle(
               fontSize: 14,
             ),
-
-            errorStyle: TextStyle(height: .1, fontSize: 12),
           ),
 
           filledButtonTheme: FilledButtonThemeData(

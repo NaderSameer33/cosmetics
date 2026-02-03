@@ -13,6 +13,8 @@ class AppInput extends StatefulWidget {
     this.isSuffix = false,
     this.isSearch = false,
     this.controller,
+    this.onCountryCodeChanged,
+    this.validator,
   });
 
   final String? suffixIcon, hintText, label;
@@ -20,6 +22,8 @@ class AppInput extends StatefulWidget {
   final bool isSuffix;
   final bool isSearch;
   final TextEditingController? controller;
+  final ValueChanged<String>? onCountryCodeChanged;
+  final String? Function(String?)? validator;
 
   @override
   State<AppInput> createState() => _AppInputState();
@@ -31,13 +35,20 @@ class _AppInputState extends State<AppInput> {
   @override
   Widget build(BuildContext context) {
     return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        if (widget.withCountryCode) const AppCountryCode(),
+        if (widget.withCountryCode)
+          AppCountryCode(
+            onCountryCodeChanged: widget.onCountryCodeChanged,
+          ),
         Expanded(
           child: TextFormField(
+            validator: widget.validator,
             controller: widget.controller,
             obscureText: isHidden && widget.isSuffix,
+
             decoration: InputDecoration(
+              isDense: true,
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(widget.isSearch ? 24 : 8),
                 borderSide: const BorderSide(

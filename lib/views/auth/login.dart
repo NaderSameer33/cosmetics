@@ -1,3 +1,4 @@
+import 'package:cosmentics/core/logic/input_validator.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../core/ui/app_input.dart';
 import '../../core/ui/app_login_or_signup.dart';
@@ -5,7 +6,6 @@ import 'forget_password.dart';
 import '../../core/logic/helper_methods.dart';
 import '../../core/ui/app_image.dart';
 import '../../core/ui/app_button.dart';
-import '../home/view.dart';
 import 'package:flutter/material.dart';
 
 class LoginView extends StatefulWidget {
@@ -17,28 +17,32 @@ class LoginView extends StatefulWidget {
 
 class _LoginViewState extends State<LoginView> {
   final _formKey = GlobalKey<FormState>();
-  String ? countryCode ;
-  final phoneController = TextEditingController() ; 
-  final passwordController = TextEditingController() ; 
+  String? countryCode;
+  final phoneController = TextEditingController();
+  final passwordController = TextEditingController();
+  bool isFirstInteraction = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Form(
         key: _formKey,
+        onChanged: () {
+          _formKey.currentState!.validate();
+        },
         child: SafeArea(
           child: SingleChildScrollView(
-            padding:  EdgeInsets.symmetric(horizontal: 16.r),
+            padding: EdgeInsets.symmetric(horizontal: 16.r),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                 SizedBox(height: 30.h),
-                 AppImage(
+                SizedBox(height: 30.h),
+                AppImage(
                   image: 'login_logo.png',
                   height: 227.h,
                   width: 284.w,
                 ),
-                 SizedBox(height: 24.h),
-                 Text(
+                SizedBox(height: 24.h),
+                Text(
                   textAlign: TextAlign.center,
                   'Login Now',
                   style: TextStyle(
@@ -46,7 +50,7 @@ class _LoginViewState extends State<LoginView> {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                 SizedBox(height: 20.h),
+                SizedBox(height: 20.h),
                 Text(
                   textAlign: TextAlign.center,
                   'Please enter the details below to continue',
@@ -56,17 +60,23 @@ class _LoginViewState extends State<LoginView> {
                     fontWeight: FontWeight.w400,
                   ),
                 ),
-                 SizedBox(height: 25.h),
-                const AppInput(
-                  
+                SizedBox(height: 25.h),
+                AppInput(
+                  validator: InputValidator.phoneValidator,
+                  controller: phoneController,
+                  onCountryCodeChanged: (value) {
+                    countryCode = value;
+                  },
                   withCountryCode: true,
                   label: 'phone Number',
                   hintText: 'phone Number',
                 ),
-                 SizedBox(
+                SizedBox(
                   height: 10.h,
                 ),
-                const AppInput(
+                AppInput(
+                  validator: InputValidator.passwordValidator,
+                  controller: passwordController,
                   hintText: 'your Password',
                   isSuffix: true,
                 ),
@@ -77,16 +87,14 @@ class _LoginViewState extends State<LoginView> {
                     child: const Text('Forget Password?'),
                   ),
                 ),
-                 SizedBox(height: 43.h),
+                SizedBox(height: 43.h),
                 AppButton(
                   onPressed: () {
-                    if (_formKey.currentState!.validate()) {
-                      goTo(const HomeView());
-                    }
+                    if (_formKey.currentState!.validate()) {}
                   },
                   title: 'Login ',
                 ),
-                 SizedBox(height: 20.h),
+                SizedBox(height: 20.h),
               ],
             ),
           ),
