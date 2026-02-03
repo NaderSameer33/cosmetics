@@ -8,16 +8,29 @@ class AppButton extends StatelessWidget {
     required this.title,
     required this.onPressed,
     this.icon,
+    this.isLoading = false,
   });
   final String title;
   final VoidCallback onPressed;
   final String? icon;
+  final bool isLoading;
 
   @override
   Widget build(BuildContext context) {
     return FilledButton.icon(
-      icon: icon != null ? AppImage(image: icon!) : null,
-      onPressed: onPressed,
+      icon: isLoading
+          ? SizedBox(
+              height: 16.h,
+              width: 16.w,
+              child: const CircularProgressIndicator(
+                color: Colors.white,
+                strokeWidth: .5,
+              ),
+            )
+          : icon != null
+          ? AppImage(image: icon!)
+          : null,
+      onPressed: isLoading ? null : onPressed,
       label: Text(
         title,
         style: TextStyle(
