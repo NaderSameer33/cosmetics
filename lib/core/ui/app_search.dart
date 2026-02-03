@@ -8,6 +8,7 @@ class AppSearch extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const AppInput(
+      isSearch: true,
       suffixIcon: 'search.svg',
       hintText: 'search',
     );

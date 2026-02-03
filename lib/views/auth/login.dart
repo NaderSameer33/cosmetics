@@ -17,6 +17,9 @@ class LoginView extends StatefulWidget {
 
 class _LoginViewState extends State<LoginView> {
   final _formKey = GlobalKey<FormState>();
+  String ? countryCode ;
+  final phoneController = TextEditingController() ; 
+  final passwordController = TextEditingController() ; 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,6 +58,7 @@ class _LoginViewState extends State<LoginView> {
                 ),
                  SizedBox(height: 25.h),
                 const AppInput(
+                  
                   withCountryCode: true,
                   label: 'phone Number',
                   hintText: 'phone Number',

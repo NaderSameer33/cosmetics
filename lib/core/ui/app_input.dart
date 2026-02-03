@@ -1,3 +1,4 @@
+import 'package:cosmentics/core/ui/app_country_code.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'app_image.dart';
@@ -12,67 +13,50 @@ class AppInput extends StatefulWidget {
     this.withCountryCode = false,
     this.isSuffix = false,
     this.isSearch = false,
+    this.controller,
   });
+
   final String? suffixIcon, hintText, label;
   final bool withCountryCode;
   final bool isSuffix;
   final bool isSearch;
+  final TextEditingController? controller;
 
   @override
   State<AppInput> createState() => _AppInputState();
 }
 
 class _AppInputState extends State<AppInput> {
-  late int currentCuntryIndex;
-  final list = [10, 20, 30, 40];
   bool isHidden = true;
-  @override
-  void initState() {
-    currentCuntryIndex = list.first;
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
-        if (widget.withCountryCode)
-          Padding(
-            padding: EdgeInsetsDirectional.only(end: 6.r),
-            child: DecoratedBox(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8.r),
-                border: Border.all(
-                  color: const Color(0xff5a6690),
-                ),
-              ),
-              child: DropdownButton(
-                padding: EdgeInsets.symmetric(horizontal: 16.r),
-                value: currentCuntryIndex,
-                items: list
-                    .map(
-                      (e) => DropdownMenuItem<int>(
-                        value: e,
-                        child: Text('$e'),
-                      ),
-                    )
-                    .toList(),
-
-                onChanged: (value) {
-                  setState(() {
-                    currentCuntryIndex = value!;
-                  });
-                },
-              ),
-            ),
-          ),
+        if (widget.withCountryCode) const AppCountryCode(),
         Expanded(
           child: TextFormField(
+            controller: widget.controller,
             obscureText: isHidden && widget.isSuffix,
             decoration: InputDecoration(
-              border: buildBorder(),
-              enabledBorder: buildBorder(),
-              focusedBorder: buildBorder(),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(widget.isSearch ? 24 : 8),
+                borderSide: const BorderSide(
+                  color: Color(0xff5a6690),
+                ),
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(widget.isSearch ? 24 : 8),
+                borderSide: const BorderSide(
+                  color: Color(0xff5a6690),
+                ),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(widget.isSearch ? 24 : 8),
+                borderSide: const BorderSide(
+                  color: Color(0xff5a6690),
+                ),
+              ),
               labelText: widget.label,
 
               hintText: widget.hintText,
@@ -99,13 +83,4 @@ class _AppInputState extends State<AppInput> {
       ],
     );
   }
-}
-
-OutlineInputBorder buildBorder() {
-  return OutlineInputBorder(
-    borderRadius: BorderRadius.circular(8),
-    borderSide: const BorderSide(
-      color: Color(0xff5a6690),
-    ),
-  );
 }
