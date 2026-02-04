@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:lottie/lottie.dart';
@@ -29,15 +30,22 @@ class AppImage extends StatelessWidget {
     if (image.toLowerCase().endsWith('svg')) {
       child = SvgPicture.asset(
         'assets/icons/$image',
-        color: color, 
+        color: color,
         height: height,
         width: width,
         fit: myFit,
       );
     } else if (image.startsWith('http')) {
-      child = Image.network(
+      child = CachedNetworkImage(
+        placeholder: (context, urel) => const CircularProgressIndicator(
+          color: Colors.red,
+        ),
+        errorWidget: (context, url, error) => const Icon(
+          Icons.error,
+          color: Colors.red,
+        ),
         fit: myFit,
-        image,
+        imageUrl: image,
         color: color,
         height: height,
         width: width,

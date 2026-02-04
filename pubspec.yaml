@@ -25,6 +25,7 @@ dependencies:
 
   maps_launcher: ^3.0.0+1
   geolocator: ^14.0.2
+  cached_network_image: ^3.4.1
 
 dev_dependencies:
   flutter_test:
