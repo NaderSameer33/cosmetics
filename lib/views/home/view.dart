@@ -1,10 +1,9 @@
+import 'package:cosmentics/views/home/pages/home/view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../../core/ui/app_image.dart';
 import 'pages/cart.dart';
-import 'pages/categories.dart';
-import 'pages/home.dart';
+import 'pages/home/categories/view.dart';
 import 'pages/profile/view.dart';
 
 class HomeView extends StatefulWidget {
@@ -31,7 +30,7 @@ class _HomeViewState extends State<HomeView> {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: Container(
         clipBehavior: Clip.antiAliasWithSaveLayer,
-        margin:  EdgeInsets.symmetric(horizontal: 13.r),
+        margin: EdgeInsets.symmetric(horizontal: 13.r),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(25),
           boxShadow: [

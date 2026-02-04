@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:lottie/lottie.dart';
 
@@ -37,8 +38,14 @@ class AppImage extends StatelessWidget {
       );
     } else if (image.startsWith('http')) {
       child = CachedNetworkImage(
-        placeholder: (context, urel) => const CircularProgressIndicator(
-          color: Colors.red,
+        placeholder: (context, urel) => Center(
+          child: SizedBox(
+            height: 20.h,
+            width: 20.w,
+            child: const CircularProgressIndicator(
+              color: Colors.white,
+            ),
+          ),
         ),
         errorWidget: (context, url, error) => const Icon(
           Icons.error,

@@ -4,11 +4,11 @@ import '../core/ui/app_image.dart';
 import '../views/pin_location.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:maps_launcher/maps_launcher.dart';
 import '../core/ui/app_button.dart';
 import 'package:flutter/material.dart';
 part 'widgets/summary.dart';
 part 'widgets/tile.dart';
+
 
 class CheckoutView extends StatelessWidget {
   const CheckoutView({super.key});
