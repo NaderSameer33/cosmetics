@@ -2,6 +2,7 @@ import 'package:cosmentics/core/ui/app_image.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 import '../../../../../core/ui/app_search.dart';
 part 'components/item.dart';
@@ -35,45 +36,51 @@ class _CategoriesPageState extends State<CategoriesPage> {
 
   @override
   Widget build(BuildContext context) {
-    return list != null
-        ? Scaffold(
-            body: SafeArea(
-              child: SingleChildScrollView(
-                padding: EdgeInsets.symmetric(horizontal: 16.r),
-                child: Column(
-                  children: [
-                    Text(
-                      'Categories',
-                      style: TextStyle(
-                        fontSize: 24.sp,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    SizedBox(height: 20.h),
-                    const AppSearch(),
-                    SizedBox(
-                      height: 20.h,
-                    ),
-                    ListView.separated(
-                      padding: EdgeInsets.only(bottom: 100.r),
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      itemCount: list!.length,
-                      itemBuilder: (context, index) => _Item(
-                        categoryModel: list![index],
-                      ),
+    if (list == null) {
+      return const Center(
+        child: CircularProgressIndicator(
+          color: Colors.white,
+        ),
+      );
+    }
 
-                      separatorBuilder: (context, index) => const Divider(
-                        color: Color(0xffb3b3c1),
-                        thickness: 1,
-                      ),
-                    ),
-                  ],
+    return Scaffold(
+      body: SafeArea(
+        child: SingleChildScrollView(
+          padding: EdgeInsets.symmetric(horizontal: 16.r),
+          child: Column(
+            children: [
+              Text(
+                'Categories',
+                style: TextStyle(
+                  fontSize: 24.sp,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
-            ),
-          )
-        : Container();
+              SizedBox(height: 20.h),
+              const AppSearch(),
+              SizedBox(
+                height: 20.h,
+              ),
+              ListView.separated(
+                padding: EdgeInsets.only(bottom: 100.r),
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemCount: list!.length,
+                itemBuilder: (context, index) => _Item(
+                  categoryModel: list![index],
+                ),
+
+                separatorBuilder: (context, index) => const Divider(
+                  color: Color(0xffb3b3c1),
+                  thickness: 1,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }
 
