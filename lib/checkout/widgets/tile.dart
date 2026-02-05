@@ -2,7 +2,6 @@ part of '../view.dart';
 
 class _Tile extends StatelessWidget {
   const _Tile({
-    super.key,
     required this.title,
     this.traling,
     this.subTitle,
@@ -44,7 +43,7 @@ class _Tile extends StatelessWidget {
           ? Text(
               subTitle!,
               style: TextStyle(
-                color: const Color(0xff434C6D),
+                color: const Color(0xff434C6D) , 
                 fontSize: 10.sp,
                 fontWeight: FontWeight.w600,
               ),

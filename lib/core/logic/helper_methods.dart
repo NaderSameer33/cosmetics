@@ -21,12 +21,13 @@ void goTo(Widget page, {bool canPop = true, int? delayedSeconds}) {
   }
 }
 
-void showMsg(String text) {
+void showMsg(String text, {bool isError = false}) {
   if (text.isNotEmpty) {
     ScaffoldMessenger.of(
       navKey.currentContext!,
     ).showSnackBar(
       SnackBar(
+        backgroundColor: isError ? Colors.red : Colors.green,
         duration: const Duration(seconds: 3),
         content: Text(text),
       ),

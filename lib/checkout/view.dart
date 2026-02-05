@@ -9,7 +9,6 @@ import 'package:flutter/material.dart';
 part 'widgets/summary.dart';
 part 'widgets/tile.dart';
 
-
 class CheckoutView extends StatelessWidget {
   const CheckoutView({super.key});
 

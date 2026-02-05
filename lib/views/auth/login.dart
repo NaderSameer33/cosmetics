@@ -1,3 +1,4 @@
+import 'package:cosmentics/core/logic/dio_helper.dart';
 import '../../core/logic/input_validator.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../core/ui/app_input.dart';
@@ -20,7 +21,27 @@ class _LoginViewState extends State<LoginView> {
   String? countryCode;
   final phoneController = TextEditingController();
   final passwordController = TextEditingController();
-  bool isFirstInteraction = false;
+
+  Future<void> sendData() async {
+    final phone = phoneController.text.trim();
+    final password = passwordController.text.trim();
+    final code = countryCode;
+    final response = await DioHelper.sendData(
+      data: {
+        "countryCode": code,
+        "phoneNumber": phone,
+        "password": password,
+      },
+      endPoint: 'Auth/login',
+    );
+    
+    if (response.issucces) {
+      showMsg('loginSucces');
+    } else {
+      showMsg(response.expetion ?? '', isError: true);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -90,7 +111,9 @@ class _LoginViewState extends State<LoginView> {
                 SizedBox(height: 43.h),
                 AppButton(
                   onPressed: () {
-                    if (_formKey.currentState!.validate()) {}
+                    if (_formKey.currentState!.validate()) {
+                      sendData();
+                    }
                   },
                   title: 'Login ',
                 ),

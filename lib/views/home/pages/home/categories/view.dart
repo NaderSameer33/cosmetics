@@ -1,8 +1,8 @@
+import 'package:cosmentics/core/logic/dio_helper.dart';
+import 'package:cosmentics/core/logic/helper_methods.dart';
 import 'package:cosmentics/core/ui/app_image.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:skeletonizer/skeletonizer.dart';
 
 import '../../../../../core/ui/app_search.dart';
 part 'components/item.dart';
@@ -18,14 +18,14 @@ class _CategoriesPageState extends State<CategoriesPage> {
   List<CategoryModel>? list;
 
   Future<void> getData() async {
-    final response = await Dio().get(
-      'https://cosmatics.growfet.com/api/Categories',
-    );
-    list = CategoryData.fromJson({
-      'list': response.data,
-    }).list;
+    final resp = await DioHelper.getData(endPoint: 'Categories');
+    if (resp.issucces) {
+      list = CategoryData.fromJson(resp.data ?? {}).list;
 
-    setState(() {});
+      setState(() {});
+    } else {
+      showMsg(resp.expetion ?? '', isError: true);
+    }
   }
 
   @override

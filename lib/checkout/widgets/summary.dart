@@ -2,7 +2,6 @@ part of '../view.dart';
 
 class _Summary extends StatelessWidget {
   const _Summary({
-    super.key,
     required this.title,
     required this.subTitle,
   });

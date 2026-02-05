@@ -1,3 +1,4 @@
+import 'package:cosmentics/views/auth/login.dart';
 import 'package:cosmentics/views/home/view.dart';
 import 'core/logic/cache_helper.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

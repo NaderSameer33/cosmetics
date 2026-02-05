@@ -11,7 +11,12 @@ class AppBackButton extends StatelessWidget {
       child: CircleAvatar(
         radius: 10,
         backgroundColor: const Color(0xff101010).withValues(alpha: .05),
-        child: const AppImage(image: 'arrow_back.svg'),
+        child: IconButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          icon: const AppImage(image: 'arrow_back.svg'),
+        ),
       ),
     );
   }
