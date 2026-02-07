@@ -1,6 +1,6 @@
-import 'package:cosmentics/core/logic/cache_helper.dart';
-import 'package:cosmentics/core/logic/dio_helper.dart';
-import 'package:cosmentics/views/home/pages/home/view.dart';
+import '../../core/logic/cache_helper.dart';
+import '../../core/logic/dio_helper.dart';
+import '../home/pages/home/view.dart';
 import '../../core/logic/input_validator.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../core/ui/app_input.dart';

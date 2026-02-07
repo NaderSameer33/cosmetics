@@ -1,4 +1,4 @@
-import 'package:cosmentics/views/home/pages/home/view.dart';
+import 'pages/home/view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../core/ui/app_image.dart';

@@ -1,6 +1,6 @@
-import 'package:cosmentics/core/logic/dio_helper.dart';
-import 'package:cosmentics/core/logic/helper_methods.dart';
-import 'package:cosmentics/core/ui/app_image.dart';
+import '../../../../../core/logic/dio_helper.dart';
+import '../../../../../core/logic/helper_methods.dart';
+import '../../../../../core/ui/app_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

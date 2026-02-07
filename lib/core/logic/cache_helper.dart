@@ -1,4 +1,4 @@
-import 'package:cosmentics/views/auth/login.dart';
+import '../../views/auth/login.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class CacheHelper {

@@ -1,12 +1,14 @@
 
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../../../core/ui/app_search.dart';
-import '../../../../core/ui/app_image.dart';
 import 'package:flutter/material.dart';
-part 'components/offers.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../../../../core/ui/app_image.dart';
+import '../../../../core/ui/app_search.dart';
+
 part 'components/list.dart';
+part 'components/offers.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
