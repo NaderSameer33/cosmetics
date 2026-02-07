@@ -1,4 +1,5 @@
 import 'package:animate_do/animate_do.dart';
+import 'package:cosmentics/views/home/view.dart';
 import '../core/logic/cache_helper.dart';
 import 'auth/login.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -19,9 +20,14 @@ class _SplashViewState extends State<SplashView> {
   @override
   void initState() {
     bool isFirstTime = CacheHelper.getIsFirstTime();
+    bool isAuth = CacheHelper.isAuth();
 
     goTo(
-      isFirstTime ? const OnBoradingView() : const LoginView(),
+      isFirstTime
+          ? const OnBoradingView()
+          : isAuth
+          ? const HomeView()
+          : const LoginView(),
       canPop: false,
       delayedSeconds: 5,
     );

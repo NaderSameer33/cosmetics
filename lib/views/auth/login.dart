@@ -1,4 +1,6 @@
+import 'package:cosmentics/core/logic/cache_helper.dart';
 import 'package:cosmentics/core/logic/dio_helper.dart';
+import 'package:cosmentics/views/home/pages/home/view.dart';
 import '../../core/logic/input_validator.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../core/ui/app_input.dart';
@@ -22,7 +24,11 @@ class _LoginViewState extends State<LoginView> {
   final phoneController = TextEditingController();
   final passwordController = TextEditingController();
 
+  DataState? state;
+
   Future<void> sendData() async {
+    state = DataState.loading;
+    setState(() {});
     final phone = phoneController.text.trim();
     final password = passwordController.text.trim();
     final code = countryCode;
@@ -36,10 +42,16 @@ class _LoginViewState extends State<LoginView> {
     );
 
     if (response.issucces) {
-      showMsg('loginSucces');
+      state = DataState.success;
+      showMsg('login Succes');
+      goTo(const HomePage(), canPop: false);
+      final model = UserData.fromJson(response.data!);
+      await CacheHelper.saveUserData(model);
     } else {
+      state = DataState.falied;
       showMsg(response.expetion!, isError: true);
     }
+    setState(() {});
   }
 
   @override
@@ -110,6 +122,7 @@ class _LoginViewState extends State<LoginView> {
                 ),
                 SizedBox(height: 43.h),
                 AppButton(
+                  isLoading: state == DataState.loading,
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
                       sendData();
@@ -127,5 +140,33 @@ class _LoginViewState extends State<LoginView> {
         isLogin: true,
       ),
     );
+  }
+}
+
+class UserData {
+  late final String token;
+  late final UserModel userModel;
+  UserData.fromJson(Map<String, dynamic> json) {
+    token = json['token'] ?? '';
+    userModel = UserModel.fromJson(json['user']);
+  }
+}
+
+class UserModel {
+  late final int id;
+  late final String userName,
+      email,
+      phoneNumber,
+      countryCode,
+      role,
+      profileImage;
+  UserModel.fromJson(Map<String, dynamic> json) {
+    id = json['id'] ?? 0;
+    userName = json['username'] ?? '';
+    email = json['email'] ?? '';
+    phoneNumber = json['phoneNumber'] ?? '';
+    countryCode = json['countryCode'] ?? '';
+    role = json['role'] ?? '';
+    profileImage = json['ProfilePhotoUrl'] ?? '';
   }
 }

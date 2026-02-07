@@ -2,7 +2,6 @@ import 'package:cosmentics/core/logic/dio_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-enum DataState { loading, success, falied }
 
 class AppCountryCode extends StatefulWidget {
   const AppCountryCode({super.key, this.onCountryCodeChanged});
@@ -20,6 +19,7 @@ class _AppCountryCodeState extends State<AppCountryCode> {
   void initState() {
     super.initState();
     getData();
+    
   }
 
   DataState state = DataState.loading;

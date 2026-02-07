@@ -1,5 +1,9 @@
 import 'package:dio/dio.dart';
 
+
+
+enum DataState { loading, success, falied }
+
 class DioHelper {
   static const _baseUrl = 'https://cosmatics.growfet.com/api/';
   static const _headers = {
@@ -25,10 +29,15 @@ class DioHelper {
       } else {
         data = response.data;
       }
-
-      return CustomResponse(issucces: true, data: data);
+      if (response.statusCode == 200) {
+        return CustomResponse(issucces: true, data: data);
+      }
+      return CustomResponse(issucces: false, data: data);
     } on DioException catch (e) {
-      return CustomResponse(issucces: false, expetion: e.toString());
+      return CustomResponse(
+        issucces: false,
+        expetion: e.response?.data['message'],
+      );
     }
   }
 
@@ -43,15 +52,9 @@ class DioHelper {
       );
       return CustomResponse(issucces: true, data: response.data);
     } on DioException catch (e) {
-      if (e.response?.data is Map) {
-        return CustomResponse(
-          issucces: false,
-          expetion: e.response?.data['message'],
-        );
-      }
       return CustomResponse(
         issucces: false,
-        expetion: e.toString(),
+        expetion: e.response?.data['message'],
       );
     }
   }

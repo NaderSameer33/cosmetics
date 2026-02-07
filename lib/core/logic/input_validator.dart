@@ -11,7 +11,7 @@ class InputValidator {
   static String? passwordValidator(String? value) {
     if (value!.isEmpty) {
       return 'password must be required';
-    } else if (value.length < 11) {
+    } else if (value.length < 9) {
       return 'password number must at least 11 digit';
     }
     return null;
