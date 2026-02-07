@@ -34,11 +34,11 @@ class _LoginViewState extends State<LoginView> {
       },
       endPoint: 'Auth/login',
     );
-    
+
     if (response.issucces) {
       showMsg('loginSucces');
     } else {
-      showMsg(response.expetion ?? '', isError: true);
+      showMsg(response.expetion!, isError: true);
     }
   }
 

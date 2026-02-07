@@ -12,12 +12,14 @@ class DioHelper {
 
   static Future<CustomResponse> getData({
     required String endPoint,
+    Map<String, dynamic>? quweryParamters,
   }) async {
     try {
       final response = await _dio.get(
         endPoint,
+        queryParameters: quweryParamters,
       );
-      final data;
+      final dynamic data;
       if (response.data is List) {
         data = {'list': response.data};
       } else {
@@ -26,7 +28,6 @@ class DioHelper {
 
       return CustomResponse(issucces: true, data: data);
     } on DioException catch (e) {
-      print(e.toString());
       return CustomResponse(issucces: false, expetion: e.toString());
     }
   }
@@ -42,9 +43,15 @@ class DioHelper {
       );
       return CustomResponse(issucces: true, data: response.data);
     } on DioException catch (e) {
+      if (e.response?.data is Map) {
+        return CustomResponse(
+          issucces: false,
+          expetion: e.response?.data['message'],
+        );
+      }
       return CustomResponse(
         issucces: false,
-        expetion: e.response?.data['message'],
+        expetion: e.toString(),
       );
     }
   }

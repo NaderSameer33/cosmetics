@@ -1,6 +1,8 @@
-import 'package:dio/dio.dart';
+import 'package:cosmentics/core/logic/dio_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+enum DataState { loading, success, falied }
 
 class AppCountryCode extends StatefulWidget {
   const AppCountryCode({super.key, this.onCountryCodeChanged});
@@ -11,37 +13,50 @@ class AppCountryCode extends StatefulWidget {
 }
 
 class _AppCountryCodeState extends State<AppCountryCode> {
-  List<CountryModel>? countryList;
+  late List<CountryModel> countryList;
   late String currentCountryIndex;
-
-  Future<void> getCountryCode() async {
-    final response = await Dio().get(
-      'https://cosmatics.growfet.com/api/Countries',
-    );
-    countryList = CountryData.fromList(response.data).list;
-
-    int? index = countryList?.indexWhere((element) => element.code == '+20');
-    if (index == null || index == -1) {
-      currentCountryIndex = countryList!.first.code;
-    } else {
-      currentCountryIndex = countryList![index].code;
-    }
-
-    widget.onCountryCodeChanged?.call(
-      currentCountryIndex,
-    );
-    setState(() {});
-  }
 
   @override
   void initState() {
     super.initState();
-    getCountryCode();
+    getData();
+  }
+
+  DataState state = DataState.loading;
+
+  Future<void> getData() async {
+    state = DataState.loading;
+    setState(() {});
+    final response = await DioHelper.getData(endPoint: 'Countries');
+    if (response.issucces) {
+      countryList = CountryData.fromJos(response.data!).list;
+      getEgyptCode();
+      state = DataState.success;
+    } else {
+      state = DataState.falied;
+    }
+    setState(() {});
+  }
+
+  void getEgyptCode() {
+    final index = countryList.indexWhere((model) => model.code == '+20');
+    if (index == -1) {
+      currentCountryIndex = countryList.first.code;
+    } else {
+      currentCountryIndex = countryList[index].code;
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    return countryList == null
+    return state == DataState.falied
+        ? IconButton(
+            onPressed: getData,
+            icon: const Icon(
+              Icons.replay,
+            ),
+          )
+        : state == DataState.loading
         ? const Center(
             child: CircularProgressIndicator(
               color: Colors.white,
@@ -59,7 +74,7 @@ class _AppCountryCodeState extends State<AppCountryCode> {
               child: DropdownButton<String>(
                 padding: EdgeInsets.symmetric(horizontal: 16.r),
                 value: currentCountryIndex,
-                items: countryList!
+                items: countryList
                     .map(
                       (item) => DropdownMenuItem<String>(
                         value: item.code,
@@ -81,8 +96,10 @@ class _AppCountryCodeState extends State<AppCountryCode> {
 
 class CountryData {
   late final List<CountryModel> list;
-  CountryData.fromList(List<dynamic> list) {
-    this.list = list.map((model) => CountryModel.fromJson(model)).toList();
+  CountryData.fromJos(Map<String, dynamic> json) {
+    list = List.from(
+      json['list'] ?? {},
+    ).map((model) => CountryModel.fromJson(model)).toList();
   }
 }
 
