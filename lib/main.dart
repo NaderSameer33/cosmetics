@@ -1,6 +1,4 @@
-import 'views/auth/login.dart';
-import 'views/home/view.dart';
-import 'views/splash.dart';
+import 'package:cosmentics/views/splash.dart';
 import 'core/logic/cache_helper.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'core/logic/helper_methods.dart';

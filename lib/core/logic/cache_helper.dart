@@ -15,8 +15,12 @@ class CacheHelper {
     return _preferences.getBool('isFirst') ?? true;
   }
 
+  static String get getToken {
+    return _preferences.getString('token') ?? '';
+  }
+
   static bool isAuth() {
-    return (_preferences.getString('token') ?? '').isNotEmpty;
+    return getToken.isNotEmpty;
   }
 
   static Future<void> saveUserData(UserData userData) async {
@@ -27,5 +31,9 @@ class CacheHelper {
     _preferences.setString('userName', userData.userModel.userName);
     _preferences.setString('profileImage', userData.userModel.profileImage);
     _preferences.setString('token', userData.token);
+  }
+
+  static void logOut() async {
+    await _preferences.clear();
   }
 }

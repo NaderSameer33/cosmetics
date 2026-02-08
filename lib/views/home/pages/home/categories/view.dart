@@ -70,7 +70,7 @@ class _CategoriesPageState extends State<CategoriesPage> {
                 itemBuilder: (context, index) => _Item(
                   categoryModel: list![index],
                 ),
-
+      
                 separatorBuilder: (context, index) => const Divider(
                   color: Color(0xffb3b3c1),
                   thickness: 1,

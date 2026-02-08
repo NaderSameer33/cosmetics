@@ -27,7 +27,6 @@ class _HomeViewState extends State<HomeView> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: _homeList[_currentIndex].widget,
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       bottomNavigationBar: Container(
         clipBehavior: Clip.antiAliasWithSaveLayer,
         margin: EdgeInsets.symmetric(horizontal: 13.r),
@@ -63,7 +62,7 @@ class _HomeViewState extends State<HomeView> {
           type: BottomNavigationBarType.fixed,
 
           items: List.generate(
-            4,
+            _homeList.length,
             (index) {
               return BottomNavigationBarItem(
                 icon: AppImage(

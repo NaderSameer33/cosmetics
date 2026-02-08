@@ -1,12 +1,13 @@
+import 'package:cosmentics/core/logic/cache_helper.dart';
+import 'package:cosmentics/core/logic/helper_methods.dart';
+import 'package:cosmentics/views/auth/login.dart';
 import 'package:dio/dio.dart';
-
-
 
 enum DataState { loading, success, falied }
 
 class DioHelper {
   static const _baseUrl = 'https://cosmatics.growfet.com/api/';
-  static const _headers = {
+  static final _headers = {
     'Accept': 'application/json',
     'Content-Type': 'application/json',
   };
@@ -32,7 +33,10 @@ class DioHelper {
       if (response.statusCode == 200) {
         return CustomResponse(issucces: true, data: data);
       }
-      return CustomResponse(issucces: false, data: data);
+      return CustomResponse(
+        issucces: false,
+        data: response.data,
+      );
     } on DioException catch (e) {
       return CustomResponse(
         issucces: false,
@@ -42,16 +46,26 @@ class DioHelper {
   }
 
   static Future<CustomResponse> sendData({
-    required Map<String, dynamic> data,
+    Map<String, dynamic>? data,
     required String endPoint,
   }) async {
     try {
+      _dio.options.headers.addAll({
+        'Authorization': 'Bearer ${CacheHelper.getToken}',
+      });
       final response = await _dio.post(
         endPoint,
         data: data,
       );
-      return CustomResponse(issucces: true, data: response.data);
+      if (response.statusCode == 200) {
+        return CustomResponse(issucces: true, data: response.data);
+      }
+      return CustomResponse(issucces: false, data: response.data);
     } on DioException catch (e) {
+      if (e.response?.statusCode == 401) {
+        CacheHelper.logOut();
+        goTo(const LoginView());
+      }
       return CustomResponse(
         issucces: false,
         expetion: e.response?.data['message'],

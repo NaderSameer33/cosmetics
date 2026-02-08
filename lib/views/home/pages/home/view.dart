@@ -1,4 +1,3 @@
-
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -20,25 +19,27 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: SingleChildScrollView(
-        padding: EdgeInsets.symmetric(horizontal: 16.r),
+    return Scaffold(
+      body: SafeArea(
+        child: SingleChildScrollView(
+          padding: EdgeInsets.symmetric(horizontal: 16.r),
 
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(
-              height: 10.h,
-            ),
-            const AppSearch(),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(
+                height: 10.h,
+              ),
+              const AppSearch(),
 
-            SizedBox(height: 12.h),
-            const _Offers(),
+              SizedBox(height: 12.h),
+              const _Offers(),
 
-            SizedBox(height: 10.h),
+              SizedBox(height: 10.h),
 
-            const ProductList(),
-          ],
+              const ProductList(),
+            ],
+          ),
         ),
       ),
     );

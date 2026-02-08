@@ -1,3 +1,5 @@
+import 'package:cosmentics/views/home/view.dart';
+
 import '../../core/logic/cache_helper.dart';
 import '../../core/logic/dio_helper.dart';
 import '../home/pages/home/view.dart';
@@ -43,8 +45,9 @@ class _LoginViewState extends State<LoginView> {
 
     if (response.issucces) {
       state = DataState.success;
-      showMsg('login Succes');
-      goTo(const HomePage(), canPop: false);
+      showMsg('login sucessfly my brother ');
+      goTo(const HomeView(), canPop: false);
+
       final model = UserData.fromJson(response.data!);
       await CacheHelper.saveUserData(model);
     } else {

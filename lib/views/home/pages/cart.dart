@@ -11,50 +11,52 @@ class CartPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: SingleChildScrollView(
-          padding: EdgeInsets.symmetric(horizontal: 16.r),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                children: [
-                  const Spacer(),
-                  Text(
-                    'My Cart',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 24.sp,
+    return 
+      Scaffold(
+        body: SafeArea(
+          child: SingleChildScrollView(
+            padding: EdgeInsets.symmetric(horizontal: 16.r),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    const Spacer(),
+                    Text(
+                      'My Cart',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 24.sp,
+                      ),
                     ),
-                  ),
-                  const Spacer(),
-                  IconButton(
-                    onPressed: () => goTo(const CheckoutView()),
-                    icon: const AppImage(image: 'card.svg'),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 30.h,
-              ),
-
-              Text(
-                'You have 4 products in your cart',
-                style: TextStyle(
-                  fontSize: 12.sp,
-                  fontWeight: FontWeight.bold,
+                    const Spacer(),
+                    IconButton(
+                      onPressed: () => goTo(const CheckoutView()),
+                      icon: const AppImage(image: 'card.svg'),
+                    ),
+                  ],
                 ),
-              ),
-              SizedBox(
-                height: 34.h,
-              ),
-
-              const CartView(),
-            ],
+                SizedBox(
+                  height: 30.h,
+                ),
+        
+                Text(
+                  'You have 4 products in your cart',
+                  style: TextStyle(
+                    fontSize: 12.sp,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                SizedBox(
+                  height: 34.h,
+                ),
+        
+                const CartView(),
+              ],
+            ),
           ),
-        ),
-      ),
-    );
+          
+            ),
+      );
   }
 }
