@@ -47,9 +47,11 @@ class AppImage extends StatelessWidget {
             ),
           ),
         ),
-        errorWidget: (context, url, error) => const Icon(
-          Icons.error,
-          color: Colors.red,
+        errorWidget: (context, url, error) => AppImage(
+          image: 'error.png',
+          fit: fit,
+          height: height,
+          width: width,
         ),
         fit: myFit,
         imageUrl: image,

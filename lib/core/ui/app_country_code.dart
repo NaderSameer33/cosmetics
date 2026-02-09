@@ -2,7 +2,6 @@ import '../logic/dio_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-
 class AppCountryCode extends StatefulWidget {
   const AppCountryCode({super.key, this.onCountryCodeChanged});
   final ValueChanged<String>? onCountryCodeChanged;
@@ -19,7 +18,6 @@ class _AppCountryCodeState extends State<AppCountryCode> {
   void initState() {
     super.initState();
     getData();
-    
   }
 
   DataState state = DataState.loading;
@@ -45,6 +43,7 @@ class _AppCountryCodeState extends State<AppCountryCode> {
     } else {
       currentCountryIndex = countryList[index].code;
     }
+    widget.onCountryCodeChanged?.call(currentCountryIndex);
   }
 
   @override

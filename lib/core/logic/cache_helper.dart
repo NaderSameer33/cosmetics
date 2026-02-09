@@ -19,21 +19,48 @@ class CacheHelper {
     return _preferences.getString('token') ?? '';
   }
 
+  static String get getUserName {
+    return _preferences.getString('userName') ?? '';
+  }
+
   static bool isAuth() {
     return getToken.isNotEmpty;
   }
 
-  static Future<void> saveUserData(UserData userData) async {
-    _preferences.setString('email', userData.userModel.email);
-    _preferences.setInt('id', userData.userModel.id);
-    _preferences.setString('phoneNumber', userData.userModel.phoneNumber);
-    _preferences.setString('role', userData.userModel.role);
-    _preferences.setString('userName', userData.userModel.userName);
-    _preferences.setString('profileImage', userData.userModel.profileImage);
-    _preferences.setString('token', userData.token);
+  static Future<void> saveUserData({
+    UserData? userData,
+    UserModel? userModel,
+  }) async { 
+    if (userData == null && userModel == null) return; 
+    if (userData != null) {
+      _preferences.setString('token', userData.token);
+      userModel = userData.userModel ;
+    }
+    if (userModel != null) {
+      _preferences.setString('email', userModel.email); 
+      _preferences.setInt('id', userModel.id);
+      _preferences.setString('phoneNumber', userModel.phoneNumber);
+      _preferences.setString('role', userModel.role);
+      _preferences.setString('userName', userModel.userName);
+      _preferences.setString('profileImage', userModel.profileImage);
+    }
   }
 
   static void logOut() async {
-    await _preferences.clear();
+    _preferences.remove('token');
+    _preferences.remove('id');
+    _preferences.remove('phoneNumber');
+    _preferences.remove('role');
+    _preferences.remove('userName');
+    _preferences.remove('email');
+    _preferences.remove('profileImage');
+  }
+
+  static String get getProfileImage {
+    return _preferences.getString('profileImage') ?? '';
+  }
+
+  static String get phoneNumber {
+    return _preferences.getString('phoneNumber') ??'' ; 
   }
 }

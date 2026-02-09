@@ -20,6 +20,9 @@ class DioHelper {
     Map<String, dynamic>? quweryParamters,
   }) async {
     try {
+      _dio.options.headers.addAll({
+        'Authorization': 'Bearer ${CacheHelper.getToken}',
+      });
       final response = await _dio.get(
         endPoint,
         queryParameters: quweryParamters,

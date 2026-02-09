@@ -79,6 +79,7 @@ class _Item extends StatelessWidget {
                   fit: BoxFit.cover,
                   image: productModel.image,
                   width: double.infinity,
+                  height: 160,
                 ),
               ),
               Container(

@@ -1,7 +1,8 @@
+import 'dart:developer';
+
 import 'package:cosmentics/core/logic/cache_helper.dart';
 import 'package:cosmentics/core/logic/dio_helper.dart';
 import 'package:cosmentics/views/auth/login.dart';
-import 'package:cosmentics/views/home/view.dart';
 
 import '../../../../core/logic/helper_methods.dart';
 import '../../../../core/ui/app_image.dart';
@@ -10,8 +11,31 @@ import 'package:flutter/material.dart';
 part 'widgets/header.dart';
 part 'widgets/item.dart';
 
-class ProfilePage extends StatelessWidget {
+class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
+
+  @override
+  State<ProfilePage> createState() => _ProfilePageState();
+}
+
+class _ProfilePageState extends State<ProfilePage> {
+  @override
+  void initState() {
+    super.initState();
+    getData();
+  }
+
+  Future<void> getData() async {
+    final response = await DioHelper.getData(endPoint: 'Auth/profile');
+    if (response.issucces) {
+      final model = UserModel.fromJson(response.data!);
+      await CacheHelper.saveUserData(userModel: model);
+      setState(() {});
+    } else {
+      log('this is exception');
+      showMsg(response.expetion!, isError: true);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {

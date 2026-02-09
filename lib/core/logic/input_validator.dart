@@ -1,4 +1,17 @@
 class InputValidator {
+  static String? userNameValdator(String ?value) {
+    if (value!.isEmpty) {
+      return 'User Name is Required';
+    }
+    return null;
+  }
+  static String? emailValitor(String ?value) {
+    if (value!.isEmpty) {
+      return ' Email is Required';
+    } 
+    return null;
+  }
+
   static String? phoneValidator(String? value) {
     if (value!.isEmpty) {
       return 'phone number must be required';
@@ -16,4 +29,5 @@ class InputValidator {
     }
     return null;
   }
+
 }

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:cosmentics/views/home/view.dart';
 
 import '../../core/logic/cache_helper.dart';
@@ -48,8 +50,8 @@ class _LoginViewState extends State<LoginView> {
       showMsg('login sucessfly my brother ');
       goTo(const HomeView(), canPop: false);
 
-      final model = UserData.fromJson(response.data!);
-      await CacheHelper.saveUserData(model);
+      final data = UserData.fromJson(response.data!);
+      await CacheHelper.saveUserData(userData: data);
     } else {
       state = DataState.falied;
       showMsg(response.expetion!, isError: true);
@@ -126,9 +128,12 @@ class _LoginViewState extends State<LoginView> {
                 SizedBox(height: 43.h),
                 AppButton(
                   isLoading: state == DataState.loading,
-                  onPressed: () {
+                  onPressed: () async {
                     if (_formKey.currentState!.validate()) {
-                      sendData();
+                      await sendData();
+                      if (state == DataState.success) {
+                        goTo(const HomeView(), canPop: false);
+                      }
                     }
                   },
                   title: 'Login ',
@@ -170,6 +175,6 @@ class UserModel {
     phoneNumber = json['phoneNumber'] ?? '';
     countryCode = json['countryCode'] ?? '';
     role = json['role'] ?? '';
-    profileImage = json['ProfilePhotoUrl'] ?? '';
+    profileImage = json['profilePhotoUrl'] ?? '';
   }
 }
