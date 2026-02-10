@@ -1,7 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cosmentics/core/logic/dio_helper.dart';
 import 'package:cosmentics/core/logic/helper_methods.dart';
-import 'package:cosmentics/views/auth/login.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

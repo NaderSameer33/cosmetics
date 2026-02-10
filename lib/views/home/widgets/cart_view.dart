@@ -6,20 +6,24 @@ import 'cart_button.dart';
 import 'package:flutter/material.dart';
 
 class CartView extends StatefulWidget {
-  const CartView({super.key});
-
+  const CartView({super.key, required this.countProduct});
+  final ValueChanged <int> countProduct ;
   @override
   State<CartView> createState() => _CartViewState();
 }
 
 class _CartViewState extends State<CartView> {
-  DataState state = DataState.loading;
-  List<CartModel> list = [];
+  DataState? state;
+  List<CartModel> ?list ;
   Future<void> getCart() async {
+    
     final response = await DioHelper.getData(endPoint: 'Cart');
     if (response.issucces) {
       list = CartData.fromJson(response.data!).list;
       state = DataState.success;
+        widget.countProduct(list!.length) ; 
+    
+    
     } else {
       state = DataState.falied;
     }
@@ -30,9 +34,7 @@ class _CartViewState extends State<CartView> {
   void initState() {
     super.initState();
 
-    getCart();
-    
-  }
+    getCart();  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,11 +42,9 @@ class _CartViewState extends State<CartView> {
         ? const Center(
             child: AppImage(image: 'error.json'),
           )
-        : state == DataState.loading
+        : list == null
         ? const Center(
-            child: CircularProgressIndicator(
-              color: Colors.white,
-            ),
+            child: AppImage(image: 'cart.json'),
           )
         : ListView.separated(
             padding: EdgeInsets.only(bottom: 100.r),
@@ -52,10 +52,10 @@ class _CartViewState extends State<CartView> {
             shrinkWrap: true,
             itemBuilder: (context, index) => _Item(
               onDelete: () {
-                list.removeAt(index);
+                list!.removeAt(index);
                 setState(() {});
               },
-              cartModel: list[index],
+              cartModel: list![index],
             ),
 
             separatorBuilder: (context, index) => const Divider(
@@ -64,7 +64,7 @@ class _CartViewState extends State<CartView> {
               indent: 20,
             ),
 
-            itemCount: list.length,
+            itemCount: list!.length,
           );
   }
 }

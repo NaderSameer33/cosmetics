@@ -1,5 +1,6 @@
 import 'package:cosmentics/core/logic/dio_helper.dart';
 import 'package:cosmentics/core/logic/helper_methods.dart';
+import 'package:cosmentics/core/logic/input_validator.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../core/ui/app_button.dart';
@@ -85,6 +86,7 @@ class _CreatePasswordViewState extends State<CreatePasswordView> {
                 ),
                 SizedBox(height: 40.h),
                 AppInput(
+                  validator: InputValidator.passwordValidator,
                   controller: passwordController,
                   isSuffix: true,
                   hintText: 'new password',
@@ -94,6 +96,7 @@ class _CreatePasswordViewState extends State<CreatePasswordView> {
                   height: 10.h,
                 ),
                 AppInput(
+                  validator: InputValidator.passwordValidator,
                   controller: confirmPasswordController,
                   isSuffix: true,
                   hintText: 'confirm password',

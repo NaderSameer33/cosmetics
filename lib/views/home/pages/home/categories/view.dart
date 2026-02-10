@@ -43,8 +43,10 @@ class _CategoriesPageState extends State<CategoriesPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: state == DataState.loading
-          ? const CircularProgressIndicator(
-              color: Colors.white,
+          ? const Center(
+              child: CircularProgressIndicator(
+                color: Colors.white,
+              ),
             )
           : state == DataState.falied
           ? Center(

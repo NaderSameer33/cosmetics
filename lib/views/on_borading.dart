@@ -13,6 +13,7 @@ class OnBoradingView extends StatefulWidget {
 }
 
 class _OnBoradingViewState extends State<OnBoradingView> {
+  final pageController = PageController();
   final _onBoradingList = [
     _Model(
       image: 'on_borading_one.png',
@@ -38,6 +39,7 @@ class _OnBoradingViewState extends State<OnBoradingView> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: PageView.builder(
+        controller: pageController,
         onPageChanged: (value) {
           currentIndex = value;
           setState(() {});
@@ -45,6 +47,7 @@ class _OnBoradingViewState extends State<OnBoradingView> {
 
         itemCount: _onBoradingList.length,
         itemBuilder: (context, index) => _OnBoradingItem(
+          pageController: pageController,
           currentIndex: currentIndex,
           onBordingModel: _onBoradingList[index],
         ),
@@ -57,9 +60,11 @@ class _OnBoradingItem extends StatelessWidget {
   const _OnBoradingItem({
     required this.onBordingModel,
     required this.currentIndex,
+    required this.pageController,
   });
   final _Model onBordingModel;
   final int currentIndex;
+  final PageController pageController;
 
   @override
   Widget build(BuildContext context) {
@@ -127,7 +132,12 @@ class _OnBoradingItem extends StatelessWidget {
                   ),
 
                   backgroundColor: const Color(0xff434C6D),
-                  onPressed: () {},
+                  onPressed: () {
+                    pageController.nextPage(
+                      duration: const Duration(milliseconds: 350),
+                      curve: Curves.linear,
+                    );
+                  },
                   child: const Icon(
                     Icons.arrow_forward_ios,
                     color: Colors.white,
@@ -141,8 +151,8 @@ class _OnBoradingItem extends StatelessWidget {
                   style: FilledButton.styleFrom(
                     backgroundColor: const Color(0xff434C6D),
                   ),
-                  onPressed: ()  {
-                     CacheHelper.setIsFirstTime(); 
+                  onPressed: () {
+                    CacheHelper.setIsFirstTime();
                     goTo(const LoginView(), canPop: false);
                   },
                   child: Text(

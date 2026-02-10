@@ -20,55 +20,60 @@ class Cosmetics extends StatelessWidget {
       minTextAdapt: true,
       splitScreenMode: true,
       designSize: const Size(390, 844),
-      child: MaterialApp(
-        navigatorKey: navKey,
+      child: GestureDetector(
+        onTap: () {
+          FocusManager.instance.primaryFocus!.unfocus();
+        },
+        child: MaterialApp(
+          navigatorKey: navKey,
 
-        theme: ThemeData(
-          textTheme: const TextTheme(
-            bodyMedium: TextStyle(
-              color: Color(0xff434C6D),
+          theme: ThemeData(
+            textTheme: const TextTheme(
+              bodyMedium: TextStyle(
+                color: Color(0xff434C6D),
+              ),
             ),
-          ),
 
-          colorScheme: ColorScheme.fromSeed(
-            seedColor: const Color(0xffD75D72),
-          ),
-          scaffoldBackgroundColor: const Color(
-            0xffD9D9D9,
-          ),
-          textButtonTheme: TextButtonThemeData(
-            style: TextButton.styleFrom(
-              foregroundColor: const Color(0xffD75D72),
+            colorScheme: ColorScheme.fromSeed(
+              seedColor: const Color(0xffD75D72),
             ),
-          ),
+            scaffoldBackgroundColor: const Color(
+              0xffD9D9D9,
+            ),
+            textButtonTheme: TextButtonThemeData(
+              style: TextButton.styleFrom(
+                foregroundColor: const Color(0xffD75D72),
+              ),
+            ),
 
-          inputDecorationTheme: const InputDecorationTheme(
-            suffixIconColor: Color(0xff8E8EA9),
-            labelStyle: TextStyle(
-              color: Color(0xff8E8EA9),
+            inputDecorationTheme: const InputDecorationTheme(
+              suffixIconColor: Color(0xff8E8EA9),
+              labelStyle: TextStyle(
+                color: Color(0xff8E8EA9),
+              ),
+              hintStyle: TextStyle(
+                color: Color(0xff8E8EA9),
+                fontSize: 12,
+              ),
+              floatingLabelStyle: TextStyle(
+                fontSize: 14,
+              ),
             ),
-            hintStyle: TextStyle(
-              color: Color(0xff8E8EA9),
-              fontSize: 12,
-            ),
-            floatingLabelStyle: TextStyle(
-              fontSize: 14,
-            ),
-          ),
 
-          filledButtonTheme: FilledButtonThemeData(
-            style: FilledButton.styleFrom(
-              backgroundColor: const Color(0xffD75D72),
-              fixedSize: const Size.fromHeight(65),
-              foregroundColor: Colors.white,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(60),
+            filledButtonTheme: FilledButtonThemeData(
+              style: FilledButton.styleFrom(
+                backgroundColor: const Color(0xffD75D72),
+                fixedSize: const Size.fromHeight(65),
+                foregroundColor: Colors.white,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(60),
+                ),
               ),
             ),
           ),
+          debugShowCheckedModeBanner: false,
+          home: const SplashView(),
         ),
-        debugShowCheckedModeBanner: false,
-        home: const SplashView(),
       ),
     );
   }
