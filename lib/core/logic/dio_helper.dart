@@ -53,7 +53,7 @@ class DioHelper {
 
   static Future<CustomResponse> sendData({
     Map<String, dynamic>? data,
-    Map <String ,dynamic> ?queryParameters, 
+    Map<String, dynamic>? queryParameters,
     required String endPoint,
   }) async {
     try {
@@ -63,7 +63,7 @@ class DioHelper {
       final response = await _dio.post(
         endPoint,
         data: data,
-        queryParameters:queryParameters , 
+        queryParameters: queryParameters,
       );
       if (response.statusCode == 200) {
         return CustomResponse(issucces: true, data: response.data);
@@ -78,6 +78,35 @@ class DioHelper {
         issucces: false,
         expetion: e.response?.data['message'],
       );
+    }
+  }
+
+  static Future<CustomResponse> putData({
+    Map<String, dynamic>? data,
+    Map<String, dynamic>? queryParameters,
+    required String endPoint,
+  }) async {
+    try {
+      _dio.options.headers.addAll({
+        'Authorization': 'Bearer ${CacheHelper.getToken}',
+      });
+      final response = await _dio.put(
+        endPoint,
+        data: data,
+        queryParameters: queryParameters,
+      );
+      if (response.statusCode == 200) {
+        return CustomResponse(issucces: true, data: response.data);
+      }
+      return CustomResponse(issucces: false, data: response.data);
+    } on DioException catch (e) {
+      if (e.response!.data is Map) {
+        return CustomResponse(
+          issucces: false,
+          expetion: e.response?.data['message'],
+        );
+      }
+      return CustomResponse(issucces: false);
     }
   }
 }

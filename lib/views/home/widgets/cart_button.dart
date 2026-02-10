@@ -1,3 +1,5 @@
+import 'package:cosmentics/core/logic/dio_helper.dart';
+import 'package:cosmentics/core/logic/helper_methods.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -5,14 +7,38 @@ class CartButton extends StatefulWidget {
   CartButton({
     super.key,
     required this.quantity,
+    required this.productId,
   });
-  int quantity;
+  int quantity, productId;
 
   @override
   State<CartButton> createState() => _CartButtonState();
 }
 
 class _CartButtonState extends State<CartButton> {
+  late int quantity;
+
+  Future<void> upDataCart() async {
+    final response = await DioHelper.putData(
+      endPoint: 'Cart/update',
+      queryParameters: {
+        'productId': widget.productId,
+        'quantity': quantity,
+      },
+    );
+    if (response.issucces) {
+      showMsg(response.data!['message']);
+    } else {
+      showMsg(response.expetion!, isError: true);
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    quantity = widget.quantity;
+  }
+
   @override
   Widget build(BuildContext context) {
     return DecoratedBox(
@@ -29,15 +55,16 @@ class _CartButtonState extends State<CartButton> {
         children: [
           IconButton(
             onPressed: () {
-              if (widget.quantity > 1) {
-                widget.quantity--;
+              if (quantity > 1) {
+                quantity--;
                 setState(() {});
+                upDataCart();
               }
             },
             icon: const Icon(Icons.remove),
           ),
           Text(
-            '${widget.quantity}',
+            '$quantity',
             style: TextStyle(
               fontSize: 16.sp,
               fontWeight: FontWeight.bold,
@@ -45,8 +72,15 @@ class _CartButtonState extends State<CartButton> {
           ),
           IconButton(
             onPressed: () {
-              widget.quantity++;
-              setState(() {});
+              if (quantity < 100) {
+                quantity++;
+                setState(() {});
+                upDataCart();
+              } else {
+                showMsg(
+                  'معدتش فيه  كميه ي غبي ',
+                );
+              }
             },
             icon: const Icon(Icons.add),
           ),

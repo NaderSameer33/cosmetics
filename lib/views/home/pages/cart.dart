@@ -1,5 +1,4 @@
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../../../core/logic/helper_methods.dart';
 import '../../../core/ui/app_image.dart';
 import '../../../checkout/view.dart';

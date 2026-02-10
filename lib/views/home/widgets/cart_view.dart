@@ -115,6 +115,7 @@ class _Item extends StatelessWidget {
               Align(
                 alignment: AlignmentDirectional.centerEnd,
                 child: CartButton(
+                  productId: cartModel.id,
                   quantity: cartModel.quantity,
                 ),
               ),
