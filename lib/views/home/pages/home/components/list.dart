@@ -9,9 +9,17 @@ class ProductList extends StatefulWidget {
 
 class _ProductListState extends State<ProductList> {
   List<ProductModel>? list;
+  DataState state = DataState.loading;
   Future<void> getData() async {
-    final resp = await Dio().get('https://cosmatics.growfet.com/api/Products');
-    list = ProductData.formJosnList(resp.data).list;
+    final resp = await DioHelper.getData(endPoint: 'Products');
+
+    if (resp.issucces) {
+      state = DataState.success;
+
+      list = ProductData.formJosnList(resp.data!).list;
+    } else {
+      state = DataState.falied;
+    }
 
     setState(() {});
   }
@@ -24,55 +32,53 @@ class _ProductListState extends State<ProductList> {
 
   @override
   Widget build(BuildContext context) {
-    if (list == null) {
-      return const Center(
-        child: CircularProgressIndicator(
-          color: Colors.white,
-        ),
-      );
-    }
+    return state == DataState.loading
+        ? const Center(
+            child: CircularProgressIndicator(
+              color: Colors.white,
+            ),
+          )
+        : Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Top rated products',
+                style: TextStyle(
+                  fontSize: 16.sp,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              SizedBox(height: 12.h),
+              GridView.builder(
+                padding: EdgeInsets.only(bottom: 100.r),
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  mainAxisSpacing: 12,
+                  crossAxisSpacing: 12,
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          'Top rated products',
-          style: TextStyle(
-            fontSize: 16.sp,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        SizedBox(height: 12.h),
-        GridView.builder(
-          padding: EdgeInsets.only(bottom: 100.r),
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            mainAxisSpacing: 12,
-            crossAxisSpacing: 12,
+                  childAspectRatio: 176 / 237,
+                ),
+                shrinkWrap: true,
 
-            childAspectRatio: 176 / 237,
-          ),
-          shrinkWrap: true,
-
-          itemCount: list!.length,
-          physics: const NeverScrollableScrollPhysics(),
-          itemBuilder: (context, index) {
-            return _Item(
-              productModel: list![index],
-            );
-          },
-        ),
-      ],
-    );
+                itemCount: list!.length,
+                physics: const NeverScrollableScrollPhysics(),
+                itemBuilder: (context, index) {
+                  return _Item(
+                    productModel: list![index],
+                  );
+                },
+              ),
+            ],
+          );
   }
 }
 
 class ProductData {
   late final List<ProductModel> list;
-  ProductData.formJosnList(List<dynamic> list) {
-    this.list = list
-        .map((productModel) => ProductModel.fromJson(productModel))
-        .toList();
+  ProductData.formJosnList(Map<String, dynamic> json) {
+    list = List.from(
+      json['list'] ?? {},
+    ).map((model) => ProductModel.fromJson(model)).toList();
   }
 }
 

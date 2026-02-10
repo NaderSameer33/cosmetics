@@ -9,14 +9,15 @@ class _Offers extends StatefulWidget {
 
 class _OffersState extends State<_Offers> {
   List<OfferModel>? offerData;
+  DataState state = DataState.loading;
   Future<void> getData() async {
-    final respone = await Dio().get(
-      'https://cosmatics.growfet.com/api/Sliders',
-    );
-    offerData = OfferData.fromJson({
-      'list': respone.data,
-    }).list;
-
+    final respone = await DioHelper.getData(endPoint: 'Sliders');
+    if (respone.issucces) {
+      state = DataState.success;
+      offerData = OfferData.fromJson(respone.data!).list;
+    } else {
+      state = DataState.falied;
+    }
     setState(() {});
   }
 
@@ -28,82 +29,81 @@ class _OffersState extends State<_Offers> {
 
   @override
   Widget build(BuildContext context) {
-    if (offerData == null) {
-      return const Center(
-        child: CircularProgressIndicator(
-          color: Colors.white,
-        ),
-      );
-    }
-    return CarouselSlider(
-      items: List.generate(
-        offerData!.length,
-        (index) => ClipRRect(
-          borderRadius: BorderRadius.circular(20.r),
-          child: Stack(
-            alignment: Alignment.center,
-            children: [
-              AppImage(
-                image: offerData![index].image,
-                height: 320.h,
-                width: double.infinity,
-                fit: BoxFit.cover,
-              ),
-              Container(
-                decoration: BoxDecoration(
-                  color: const Color(0xffE9DCD3).withValues(alpha: .8),
-                ),
-                padding: EdgeInsets.all(20.r),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
+    return state == DataState.loading
+        ? const Center(
+            child: CircularProgressIndicator(
+              color: Colors.white,
+            ),
+          )
+        : CarouselSlider(
+            items: List.generate(
+              offerData!.length,
+              (index) => ClipRRect(
+                borderRadius: BorderRadius.circular(20.r),
+                child: Stack(
+                  alignment: Alignment.center,
                   children: [
-                    Row(
-                      children: [
-                        Expanded(
-                          child: Text(
-                            offerData![index].descriptionTitle1,
-                            style: TextStyle(
-                              fontSize: 16.sp,
-                              fontWeight: FontWeight.bold,
-                              color: const Color(0xff62322D),
-                            ),
-                          ),
-                        ),
-                        const AppImage(
-                          image: 'offer.svg',
-                        ),
-                      ],
+                    AppImage(
+                      image: offerData![index].image,
+                      height: 320.h,
+                      width: double.infinity,
+                      fit: BoxFit.cover,
                     ),
-                    SizedBox(
-                      height: 12.h,
-                    ),
-                    Row(
-                      children: [
-                        const AppImage(image: 'offer.svg'),
-                        const Spacer(),
-                        Text(
-                          offerData![index].descriptionTitle2,
-                          style: TextStyle(
-                            fontSize: 16.sp,
-                            fontWeight: FontWeight.bold,
+                    Container(
+                      decoration: BoxDecoration(
+                        color: const Color(0xffE9DCD3).withValues(alpha: .8),
+                      ),
+                      padding: EdgeInsets.all(20.r),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Row(
+                            children: [
+                              Expanded(
+                                child: Text(
+                                  offerData![index].descriptionTitle1,
+                                  style: TextStyle(
+                                    fontSize: 16.sp,
+                                    fontWeight: FontWeight.bold,
+                                    color: const Color(0xff62322D),
+                                  ),
+                                ),
+                              ),
+                              const AppImage(
+                                image: 'offer.svg',
+                              ),
+                            ],
                           ),
-                        ),
-                      ],
+                          SizedBox(
+                            height: 12.h,
+                          ),
+                          Row(
+                            children: [
+                              const AppImage(image: 'offer.svg'),
+                              const Spacer(),
+                              Text(
+                                offerData![index].descriptionTitle2,
+                                style: TextStyle(
+                                  fontSize: 16.sp,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
                   ],
                 ),
               ),
-            ],
-          ),
-        ),
-      ).toList(),
-      options: CarouselOptions(
-        height: 320.h,
-        autoPlay: true,
-        viewportFraction: 1,
-        aspectRatio: 364.w / 317.h,
-      ),
-    );
+            ).toList(),
+            options: CarouselOptions(
+              height: 320.h,
+              autoPlay: true,
+              viewportFraction: 1,
+              aspectRatio: 364.w / 317.h,
+            ),
+          );
   }
 }
 
