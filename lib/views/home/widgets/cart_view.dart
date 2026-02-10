@@ -1,6 +1,6 @@
 import 'package:cosmentics/core/logic/dio_helper.dart';
+import 'package:cosmentics/core/logic/helper_methods.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../../../core/ui/app_image.dart';
 import 'cart_button.dart';
 import 'package:flutter/material.dart';
@@ -50,6 +50,10 @@ class _CartViewState extends State<CartView> {
             physics: const NeverScrollableScrollPhysics(),
             shrinkWrap: true,
             itemBuilder: (context, index) => _Item(
+              onDelete: () {
+                list.removeAt(index);
+                setState(() {});
+              },
               cartModel: list[index],
             ),
 
@@ -65,8 +69,10 @@ class _CartViewState extends State<CartView> {
 }
 
 class _Item extends StatelessWidget {
-  const _Item({required this.cartModel});
+  const _Item({required this.cartModel, required this.onDelete});
   final CartModel cartModel;
+  final VoidCallback onDelete;
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -82,11 +88,9 @@ class _Item extends StatelessWidget {
                 width: 100.w,
               ),
             ),
-            IconButton(
-              onPressed: () {},
-              icon: const AppImage(
-                image: 'out.svg',
-              ),
+            DeleteCart(
+              onDelete: onDelete,
+              productId: cartModel.id,
             ),
           ],
         ),
@@ -123,6 +127,52 @@ class _Item extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+}
+
+class DeleteCart extends StatefulWidget {
+  const DeleteCart({
+    super.key,
+    required this.productId,
+    required this.onDelete,
+  });
+  final int productId;
+  final VoidCallback onDelete;
+  @override
+  State<DeleteCart> createState() => _DeleteCartState();
+}
+
+class _DeleteCartState extends State<DeleteCart> {
+  late int productId;
+
+  Future<void> deleteCart() async {
+    final response = await DioHelper.deleteData(
+      endPoint: 'Cart/remove/$productId',
+    );
+    if (response.issucces) {
+      showMsg(response.data!['message']);
+      widget.onDelete();
+    } else {
+      showMsg(response.expetion!);
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    productId = widget.productId;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+      onPressed: () {
+        deleteCart();
+      },
+      icon: const AppImage(
+        image: 'out.svg',
+      ),
     );
   }
 }
