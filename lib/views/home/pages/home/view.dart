@@ -1,7 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:cosmentics/core/logic/cache_helper.dart';
 import 'package:cosmentics/core/logic/dio_helper.dart';
-import 'package:dio/dio.dart';
+import 'package:cosmentics/core/logic/helper_methods.dart';
+import 'package:cosmentics/views/auth/login.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -48,11 +48,26 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
-class _Item extends StatelessWidget {
+class _Item extends StatefulWidget {
   const _Item({required this.productModel});
   final ProductModel productModel;
 
+  @override
+  State<_Item> createState() => _ItemState();
+}
 
+class _ItemState extends State<_Item> {
+  Future<void> addToCart() async {
+    final response = await DioHelper.sendData(
+      endPoint: 'Cart/add',
+      queryParameters: {'productId': widget.productModel.id, 'quantity': 1},
+    );
+    if (response.issucces) {
+      showMsg(response.data!['message']);
+    } else {
+      showMsg(response.expetion!);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -81,31 +96,34 @@ class _Item extends StatelessWidget {
                 borderRadius: BorderRadius.circular(4.r),
                 child: AppImage(
                   fit: BoxFit.cover,
-                  image: productModel.image,
+                  image: widget.productModel.image,
                   width: double.infinity,
                   height: 160,
                 ),
               ),
-              Container(
-                margin: EdgeInsets.only(right: 6.r, top: 6.r),
-                padding: EdgeInsets.all(8.r),
-                height: 32.h,
-                width: 32.w,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8.r),
-                  color: Colors.white,
-                ),
-                child: AppImage(
-                  image: 'home_card.svg',
-                  height: 16.h,
-                  width: 16.w,
+              GestureDetector(
+                onTap: addToCart,
+                child: Container(
+                  margin: EdgeInsets.only(right: 6.r, top: 6.r),
+                  padding: EdgeInsets.all(8.r),
+                  height: 32.h,
+                  width: 32.w,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8.r),
+                    color: Colors.white,
+                  ),
+                  child: AppImage(
+                    image: 'home_card.svg',
+                    height: 16.h,
+                    width: 16.w,
+                  ),
                 ),
               ),
             ],
           ),
           SizedBox(height: 10.h),
           Text(
-            productModel.name,
+            widget.productModel.name,
             style: TextStyle(
               fontWeight: FontWeight.bold,
 
@@ -116,7 +134,7 @@ class _Item extends StatelessWidget {
             height: 5.h,
           ),
           Text(
-            '${productModel.price} \$',
+            '${widget.productModel.price} \$',
             style: TextStyle(
               color: const Color(0xff70839C),
               fontSize: 12.sp,

@@ -16,15 +16,21 @@ class CategoriesPage extends StatefulWidget {
 class _CategoriesPageState extends State<CategoriesPage> {
   List<CategoryModel>? list;
 
+  DataState state = DataState.loading;
+
   Future<void> getData() async {
+    state = DataState.loading;
+    setState(() {});
     final resp = await DioHelper.getData(endPoint: 'Categories');
     if (resp.issucces) {
       list = CategoryData.fromJson(resp.data ?? {}).list;
 
-      setState(() {});
+      state = DataState.success;
     } else {
+      state = DataState.falied;
       showMsg(resp.expetion ?? '', isError: true);
     }
+    setState(() {});
   }
 
   @override
@@ -35,50 +41,64 @@ class _CategoriesPageState extends State<CategoriesPage> {
 
   @override
   Widget build(BuildContext context) {
-    if (list == null) {
-      return const Center(
-        child: CircularProgressIndicator(
-          color: Colors.white,
-        ),
-      );
-    }
-
     return Scaffold(
-      body: SafeArea(
-        child: SingleChildScrollView(
-          padding: EdgeInsets.symmetric(horizontal: 16.r),
-          child: Column(
-            children: [
-              Text(
-                'Categories',
-                style: TextStyle(
-                  fontSize: 24.sp,
-                  fontWeight: FontWeight.bold,
+      body: state == DataState.loading
+          ? const CircularProgressIndicator(
+              color: Colors.white,
+            )
+          : state == DataState.falied
+          ? Center(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const AppImage(image: 'error.json'),
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.purple,
+                      foregroundColor: Colors.white,
+                    ),
+
+                    onPressed: getData,
+                    child: const Text('Try Again'),
+                  ),
+                ],
+              ),
+            )
+          : SafeArea(
+              child: SingleChildScrollView(
+                padding: EdgeInsets.symmetric(horizontal: 16.r),
+                child: Column(
+                  children: [
+                    Text(
+                      'Categories',
+                      style: TextStyle(
+                        fontSize: 24.sp,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    SizedBox(height: 20.h),
+                    const AppSearch(),
+                    SizedBox(
+                      height: 20.h,
+                    ),
+                    ListView.separated(
+                      padding: EdgeInsets.only(bottom: 100.r),
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemCount: list!.length,
+                      itemBuilder: (context, index) => _Item(
+                        categoryModel: list![index],
+                      ),
+
+                      separatorBuilder: (context, index) => const Divider(
+                        color: Color(0xffb3b3c1),
+                        thickness: 1,
+                      ),
+                    ),
+                  ],
                 ),
               ),
-              SizedBox(height: 20.h),
-              const AppSearch(),
-              SizedBox(
-                height: 20.h,
-              ),
-              ListView.separated(
-                padding: EdgeInsets.only(bottom: 100.r),
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                itemCount: list!.length,
-                itemBuilder: (context, index) => _Item(
-                  categoryModel: list![index],
-                ),
-      
-                separatorBuilder: (context, index) => const Divider(
-                  color: Color(0xffb3b3c1),
-                  thickness: 1,
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
+            ),
     );
   }
 }

@@ -68,7 +68,7 @@ class Cosmetics extends StatelessWidget {
           ),
         ),
         debugShowCheckedModeBanner: false,
-        home: const LoginView(),
+        home: const SplashView(),
       ),
     );
   }

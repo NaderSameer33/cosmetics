@@ -50,7 +50,6 @@ class _OtpViewState extends State<OtpView> {
     }
     setState(() {});
   }
- 
 
   @override
   Widget build(BuildContext context) {
@@ -124,7 +123,10 @@ class _OtpViewState extends State<OtpView> {
                   otpCode = value;
                 },
               ),
-              const AppResentOtp(),
+              AppResentOtp(
+                phoneNumber: widget.phoneNumber?? '',
+                countryCode: widget.codeCountry?? '',
+              ),
 
               SizedBox(height: 60.h),
               AppButton(

@@ -41,15 +41,19 @@ class DioHelper {
         data: response.data,
       );
     } on DioException catch (e) {
-      return CustomResponse(
-        issucces: false,
-        expetion: e.response?.data['message'],
-      );
+      if (e.response!.data is Map) {
+        return CustomResponse(
+          issucces: false,
+          expetion: e.response?.data['message'],
+        );
+      }
+      return CustomResponse(issucces: false);
     }
   }
 
   static Future<CustomResponse> sendData({
     Map<String, dynamic>? data,
+    Map <String ,dynamic> ?queryParameters, 
     required String endPoint,
   }) async {
     try {
@@ -59,6 +63,7 @@ class DioHelper {
       final response = await _dio.post(
         endPoint,
         data: data,
+        queryParameters:queryParameters , 
       );
       if (response.statusCode == 200) {
         return CustomResponse(issucces: true, data: response.data);

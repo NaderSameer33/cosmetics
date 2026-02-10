@@ -1,96 +1,72 @@
+import 'package:cosmentics/core/logic/dio_helper.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../core/ui/app_image.dart';
 import 'cart_button.dart';
 import 'package:flutter/material.dart';
 
-class CartView extends StatelessWidget {
+class CartView extends StatefulWidget {
   const CartView({super.key});
-  final _list = const [
-    _Model(
-      'https://i.pinimg.com/736x/b2/bd/a7/b2bda7c7d655da647c403505c48c8744.jpg',
-      '100 EGP',
-      'Ultra rich mascara for lashes',
-      'Note Cosmetics',
-    ),
-    _Model(
-      'https://d1flfk77wl2xk4.cloudfront.net/Assets/38/067/XXL_p0189906738.jpg',
-      '200 EGP',
-      'Ultra rich mascara for lashes',
-      'Note Cosmetics',
-    ),
 
-    _Model(
-      'https://i.pinimg.com/736x/b2/bd/a7/b2bda7c7d655da647c403505c48c8744.jpg',
-      '300 EGP',
-      'Ultra rich mascara for lashes',
-      'Note Cosmetics',
-    ),
-    _Model(
-      'https://d1flfk77wl2xk4.cloudfront.net/Assets/38/067/XXL_p0189906738.jpg',
-      '400 EGP',
-      'Ultra rich mascara for lashes',
-      'Note Cosmetics',
-    ),
-    _Model(
-      'https://i.pinimg.com/736x/b2/bd/a7/b2bda7c7d655da647c403505c48c8744.jpg',
-      '500 EGP',
-      'Ultra rich mascara for lashes',
-      'Note Cosmetics',
-    ),
-    _Model(
-      'https://d1flfk77wl2xk4.cloudfront.net/Assets/38/067/XXL_p0189906738.jpg',
-      '600 EGP',
-      'Ultra rich mascara for lashes',
-      'Note Cosmetics',
-    ),
-    _Model(
-      'https://i.pinimg.com/736x/b2/bd/a7/b2bda7c7d655da647c403505c48c8744.jpg',
-      '700 EGP',
-      'Ultra rich mascara for lashes',
-      'Note Cosmetics',
-    ),
-    _Model(
-      'https://d1flfk77wl2xk4.cloudfront.net/Assets/38/067/XXL_p0189906738.jpg',
-      '800 EGP',
-      'Ultra rich mascara for lashes',
-      'Note Cosmetics',
-    ),
-    _Model(
-      'https://i.pinimg.com/736x/b2/bd/a7/b2bda7c7d655da647c403505c48c8744.jpg',
-      '900 EGP',
-      'Ultra rich mascara for lashes',
-      'Note Cosmetics',
-    ),
-  ];
+  @override
+  State<CartView> createState() => _CartViewState();
+}
+
+class _CartViewState extends State<CartView> {
+  DataState state = DataState.loading;
+  List<CartModel> list = [];
+  Future<void> getCart() async {
+    final response = await DioHelper.getData(endPoint: 'Cart');
+    if (response.issucces) {
+      list = CartData.fromJson(response.data!).list;
+      state = DataState.success;
+    } else {
+      state = DataState.falied;
+    }
+    setState(() {});
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    getCart();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return ListView.separated(
-      padding:  EdgeInsets.only(bottom: 100.r),
-      physics: const NeverScrollableScrollPhysics(),
-      shrinkWrap: true,
-      itemBuilder: (context, index) => _Item(
-        model: _list[index],
-      ),
+    return state == DataState.falied
+        ? const Center(
+            child: AppImage(image: 'error.json'),
+          )
+        : state == DataState.loading
+        ? const Center(
+            child: CircularProgressIndicator(
+              color: Colors.white,
+            ),
+          )
+        : ListView.separated(
+            padding: EdgeInsets.only(bottom: 100.r),
+            physics: const NeverScrollableScrollPhysics(),
+            shrinkWrap: true,
+            itemBuilder: (context, index) => _Item(
+              cartModel: list[index],
+            ),
 
-      separatorBuilder: (context, index) => const Divider(
-        color: Color(0xffB3B3C1),
-        endIndent: 20,
-        indent: 20,
-      ),
+            separatorBuilder: (context, index) => const Divider(
+              color: Color(0xffB3B3C1),
+              endIndent: 20,
+              indent: 20,
+            ),
 
-      itemCount: _list.length,
-    );
+            itemCount: list.length,
+          );
   }
 }
 
 class _Item extends StatelessWidget {
-  const _Item({
-    required this.model,
-  });
-  final _Model model;
-
+  const _Item({required this.cartModel});
+  final CartModel cartModel;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -100,7 +76,7 @@ class _Item extends StatelessWidget {
             ClipRRect(
               borderRadius: BorderRadius.circular(12.r),
               child: AppImage(
-                image: model.image,
+                image: cartModel.imageUrl,
                 fit: BoxFit.cover,
                 height: 100.h,
                 width: 100.w,
@@ -114,7 +90,7 @@ class _Item extends StatelessWidget {
             ),
           ],
         ),
-         SizedBox(
+        SizedBox(
           width: 8.w,
         ),
         Expanded(
@@ -122,30 +98,25 @@ class _Item extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text.rich(
-                style:  TextStyle(
+                style: TextStyle(
                   fontSize: 12.sp,
                   fontWeight: FontWeight.bold,
                 ),
                 TextSpan(
-                  text: "${model.title}\n",
+                  text: '${cartModel.proudctName} \n',
 
                   children: [
                     TextSpan(
-                      text: "${model.subTitle}\n",
-                      style:  TextStyle(
-                        fontSize: 10.sp,
-                        fontWeight: FontWeight.normal,
-                      ),
-                    ),
-                    TextSpan(
-                      text: model.price,
+                      text: '${cartModel.price} \$',
                     ),
                   ],
                 ),
               ),
-              const Align(
+              Align(
                 alignment: AlignmentDirectional.centerEnd,
-                child: CartButton(),
+                child: CartButton(
+                  quantity: cartModel.quantity,
+                ),
               ),
             ],
           ),
@@ -155,7 +126,28 @@ class _Item extends StatelessWidget {
   }
 }
 
-class _Model {
-  final String title, subTitle, price, image;
-  const _Model(this.image, this.price, this.subTitle, this.title);
+class CartData {
+  late List<CartModel> list;
+  late double total;
+  CartData.fromJson(Map<String, dynamic> json) {
+    list = List.from(
+      json['items'] ?? {},
+    ).map((model) => CartModel.fromJson(model)).toList();
+    total = json['total'];
+  }
+}
+
+class CartModel {
+  late int id, quantity;
+  late double price;
+
+  late String proudctName, imageUrl;
+
+  CartModel.fromJson(Map<String, dynamic> json) {
+    id = json['productId'] ?? 0;
+    quantity = json['quantity'] ?? 0;
+    price = json['price'] ?? 0;
+    imageUrl = json['imageUrl'] ?? '';
+    proudctName = json['productName'] ?? '';
+  }
 }

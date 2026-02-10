@@ -32,7 +32,13 @@ class _ProductListState extends State<ProductList> {
 
   @override
   Widget build(BuildContext context) {
-    return state == DataState.loading
+    return state == DataState.falied
+        ? const Center(
+            child: AppImage(
+              image: 'error.json',
+            ),
+          )
+        : state == DataState.loading
         ? const Center(
             child: CircularProgressIndicator(
               color: Colors.white,

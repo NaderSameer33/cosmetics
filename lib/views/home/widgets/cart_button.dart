@@ -2,16 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CartButton extends StatefulWidget {
-  const CartButton({
+  CartButton({
     super.key,
+    required this.quantity,
   });
+  int quantity;
 
   @override
   State<CartButton> createState() => _CartButtonState();
 }
 
 class _CartButtonState extends State<CartButton> {
-  int number = 1;
   @override
   Widget build(BuildContext context) {
     return DecoratedBox(
@@ -28,23 +29,23 @@ class _CartButtonState extends State<CartButton> {
         children: [
           IconButton(
             onPressed: () {
-              if (number > 1) {
-                number--;
+              if (widget.quantity > 1) {
+                widget.quantity--;
                 setState(() {});
               }
             },
             icon: const Icon(Icons.remove),
           ),
           Text(
-            '$number',
-            style:  TextStyle(
+            '${widget.quantity}',
+            style: TextStyle(
               fontSize: 16.sp,
               fontWeight: FontWeight.bold,
             ),
           ),
           IconButton(
             onPressed: () {
-              number++;
+              widget.quantity++;
               setState(() {});
             },
             icon: const Icon(Icons.add),
