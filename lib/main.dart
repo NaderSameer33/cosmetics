@@ -1,4 +1,6 @@
 import 'package:cosmentics/views/auth/login.dart';
+import 'package:cosmentics/views/auth/otp.dart';
+import 'package:cosmentics/views/splash.dart';
 import 'core/logic/cache_helper.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'core/logic/helper_methods.dart';
@@ -67,7 +69,7 @@ class Cosmetics extends StatelessWidget {
           ),
         ),
         debugShowCheckedModeBanner: false,
-        home: const LoginView(),
+        home: const SplashView(),
       ),
     );
   }

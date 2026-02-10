@@ -30,8 +30,8 @@ class _CreatePasswordViewState extends State<CreatePasswordView> {
       data: {
         "countryCode": widget.countryCode,
         "phoneNumber": widget.phonenumber,
-        "newPassword": passwordController,
-        "confirmPassword": confirmPasswordController,
+        "newPassword": passwordController.text.trim(),
+        "confirmPassword": confirmPasswordController.text.trim(),
       },
     );
     if (response.issucces) {
@@ -41,8 +41,9 @@ class _CreatePasswordViewState extends State<CreatePasswordView> {
     } else {
       state = DataState.falied;
 
-      showMsg(response.expetion ?? 'فيه غلك ', isError: true);
+      showMsg(response.expetion ?? 'فيه غلط  ', isError: true);
     }
+    setState(() {});
   }
 
   @override

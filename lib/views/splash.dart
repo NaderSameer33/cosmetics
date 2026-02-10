@@ -43,6 +43,7 @@ class _SplashViewState extends State<SplashView> {
             mainAxisSize: MainAxisSize.min,
             children: [
               const AppImage(
+                
                 image: 'splash_logo_two.png',
               ),
 

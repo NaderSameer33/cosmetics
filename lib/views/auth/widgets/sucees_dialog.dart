@@ -49,9 +49,9 @@ class SucessDialog extends StatelessWidget {
           height: 10.h,
         ),
         AppButton(
-          title: isComeSignUp ? 'Go to Home' : 'Return to login',
+          title: 'Return to login',
           onPressed: () => goTo(
-            isComeSignUp ? const HomeView() : const LoginView(),
+            const LoginView(),
             canPop: false,
           ),
         ),

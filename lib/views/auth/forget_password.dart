@@ -102,7 +102,10 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
                      await  sendData();
                       if (state == DataState.success) {
                         goTo(
+                          canPop: true , 
                           OtpView(
+                            
+                          
                             phoneNumber: phoneController.text,
                             codeCountry: countryCode,
                           ),
