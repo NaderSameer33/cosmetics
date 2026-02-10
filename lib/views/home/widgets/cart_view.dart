@@ -31,6 +31,7 @@ class _CartViewState extends State<CartView> {
     super.initState();
 
     getCart();
+    
   }
 
   @override
